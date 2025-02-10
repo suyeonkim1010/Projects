@@ -56,7 +56,7 @@ Each execution will generate output images in the `results/` directory.
 ### **3️⃣ Image Inpainting Results**
 | Damaged Image | Restored Image |
 |--------------|---------------|
-| ![Damaged](results/damaged_sample.jpg) | ![Restored](results/restored_output.png) |
+| ![Damaged](samples/damaged_sample.jpg) | ![Restored](results/restored_output.png) |
 
 ### **4️⃣ Histogram Matching Results**
 | Source Image | Reference Image | Matched Image |
