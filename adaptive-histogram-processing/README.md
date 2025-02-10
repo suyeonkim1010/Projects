@@ -86,8 +86,8 @@ This will generate histograms, equalized images, and matched images based on the
 
 ## Author
 Developed by **[Suyeon Kim]**. Feel free to reach out if you have any questions or suggestions!  
-GitHub: [Your GitHub Profile](https://github.com/suyeonkim1010/Projects.git)  
-LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/suyeon-kim-a43730256/)  
+[GitHub Profile](https://github.com/suyeonkim1010/Projects.git)  
+[LinkedIn Profile](https://www.linkedin.com/in/suyeon-kim-a43730256/)  
 
 
 
