@@ -82,7 +82,7 @@ This will generate histograms, equalized images, and matched images based on the
 ### Histogram Matching Example
 | Source Image | Reference Image | Matched Image |
 |-------------|----------------|---------------|
-| ![Source](images/sunset.jpg) | ![Reference](images/city_night.jpg) | ![Matched](images/Figure_3.ppg) |
+| ![Source](images/sunset.jpg) | ![Reference](images/city_night.jpg) | ![Matched](images/Figure_3.png) |
 
 ## Author
 Developed by **[Suyeon Kim]**. Feel free to reach out if you have any questions or suggestions!  
