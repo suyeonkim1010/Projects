@@ -46,22 +46,22 @@ Each execution will generate output images in the `results/` directory.
 ### **1️⃣ Filtering Results**
 | Original Image | Median Filter | Gaussian Filter |
 |---------------|--------------|----------------|
-| ![Original](results/original.png) | ![Median](results/median_filter.png) | ![Gaussian](results/gaussian_filter.png) |
+| ![Original](samples/sample1.jpg) | ![Median](results/median_filter.png) | ![Gaussian](results/gaussian_filter.png) |
 
 ### **2️⃣ Edge Detection Results**
 | Original Image | Sobel X Gradient | Sobel Y Gradient | Gradient Magnitude |
 |---------------|----------------|----------------|----------------|
-| ![Original](results/original.png) | ![Sobel X](results/sobel_x.png) | ![Sobel Y](results/sobel_y.png) | ![Gradient](results/gradient_magnitude.png) |
+| ![Original](samples/sample1.jpg) | ![Sobel X](results/sobel_x.png) | ![Sobel Y](results/sobel_y.png) | ![Gradient](results/gradient_magnitude.png) |
 
 ### **3️⃣ Image Inpainting Results**
 | Damaged Image | Restored Image |
 |--------------|---------------|
-| ![Damaged](results/damaged_sample.png) | ![Restored](results/restored_output.png) |
+| ![Damaged](results/damaged_sample.jpg) | ![Restored](results/restored_output.png) |
 
 ### **4️⃣ Histogram Matching Results**
 | Source Image | Reference Image | Matched Image |
 |-------------|----------------|--------------|
-| ![Source](results/original.png) | ![Reference](results/reference.png) | ![Matched](results/histogram_matched.png) |
+| ![Source](samples/sample1.jpg) | ![Reference](samples/reference.jpg) | ![Matched](results/histogram_matched.png) |
 
 ## 📷 Image Credits
 The images used in this project are from **Unsplash**, credited to their respective photographers:
