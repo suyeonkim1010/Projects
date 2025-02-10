@@ -98,4 +98,9 @@ This project uses images from **Unsplash** under the [Unsplash License](https://
 Developed by **[Suyeon Kim]**. Feel free to reach out if you have any questions or suggestions!  
 [GitHub Profile](https://github.com/suyeonkim1010/Projects.git)  
 [LinkedIn Profile](https://www.linkedin.com/in/suyeon-kim-a43730256/)  
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> b4e68f21ca87bb2cc73e45af2fe622b4a0236e7f
 
