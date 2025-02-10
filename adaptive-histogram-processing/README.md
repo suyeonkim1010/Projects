@@ -69,15 +69,20 @@ python main.py
 This will generate histograms, equalized images, and matched images based on the provided input.
 
 ## Example Results
+### Histogram of the sunset image
+| Original Image | Equalized Image |
+|---------------|----------------|
+| ![Original](images/sunset.jpg) | ![Equalized](images/Figure_1.png) |
+
 ### Histogram Equalization Example
 | Original Image | Equalized Image |
 |---------------|----------------|
-| ![Original](images/sunset.jpg) | ![Equalized](images/Figure_2.jpg) |
+| ![Original](images/sunset.jpg) | ![Equalized](images/Figure_2.png) |
 
 ### Histogram Matching Example
 | Source Image | Reference Image | Matched Image |
 |-------------|----------------|---------------|
-| ![Source](images/sunset.jpg) | ![Reference](images/city_night.jpg) | ![Matched](images/Figure_3.jpg) |
+| ![Source](images/sunset.jpg) | ![Reference](images/city_night.jpg) | ![Matched](images/Figure_3.ppg) |
 
 ## Author
 Developed by **[Suyeon Kim]**. Feel free to reach out if you have any questions or suggestions!  
