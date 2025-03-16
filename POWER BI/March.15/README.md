@@ -1,8 +1,8 @@
 # 📊 Power BI Sales Analysis Dashboard
 
 **Version:** 1.0  
-**Date:** [Insert Date]  
-**Author:** [Your Name]  
+**Date:** March 15. 2025  
+**Author:** Suyeon Kim
 
 ---
 
