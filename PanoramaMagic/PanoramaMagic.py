@@ -5,7 +5,7 @@
 # Part 3: Geometric transformations (rotate, scale, skew) and warping
 # Part 4: Panorama stitching using ORB, RANSAC, and homography estimation
 
-
+import os
 import numpy as np
 import math
 import random
@@ -22,6 +22,9 @@ from skimage.measure import ransac
 from skimage.transform import ProjectiveTransform
 from skimage.feature import match_descriptors, ORB, plot_matches
 from skimage import feature
+
+output_dir = "results"
+os.makedirs(output_dir, exist_ok=True)  # 폴더 없으면 생성
 
 
 # --- PART 1: Bayer Interpolation ---
@@ -152,13 +155,20 @@ def part1():
     rgb[:, :, 2] = IB
 
     # plotting code
-    plt.figure(figsize=(10,8))
-    plt.subplot(221), plt.imshow(IG, cmap='gray'),plt.title('IG')
-    plt.subplot(222), plt.imshow(IR, cmap='gray'),plt.title('IR')
-    plt.subplot(223), plt.imshow(IB, cmap='gray'),plt.title('IB')
+    plt.imshow(IG, cmap='gray'),plt.title('IG')
+    plt.savefig(os.path.join(output_dir, "Bayer_Green.png"))
+    plt.show()
+    
+    plt.imshow(IR, cmap='gray'),plt.title('IR')
+    plt.savefig(os.path.join(output_dir, "Bayer_Red.png"))
+    plt.show()
 
-    plt.subplot(224), plt.imshow(rgb),plt.title('rgb')
-    plt.savefig("Bayer_reconstruction.png")
+    plt.imshow(IB, cmap='gray'),plt.title('IB')
+    plt.savefig(os.path.join(output_dir, "Bayer_Blue.png"))
+    plt.show()
+
+    plt.imshow(rgb),plt.title('rgb')
+    plt.savefig(os.path.join(output_dir, "Bayer_reconstruction.png"))
     plt.show()
 
 
@@ -234,10 +244,9 @@ def part2():
 
     img = ModifiedFloydSteinbergDitherColor(image, palette)
 
-    plt.figure(figsize=(10,5))
-    plt.subplot(121),plt.imshow(orig),plt.title('Original Image')
-    plt.subplot(122),plt.imshow(img),plt.title(f'Dithered Image (nColours = {nColours})')
-    plt.savefig("Dithered_mandrill.png")
+
+    plt.imshow(img),plt.title(f'Dithered Image (nColours = {nColours})')
+    plt.savefig(os.path.join(output_dir, "Dithered_mandrill.png"))
     plt.show()
 
 
@@ -371,24 +380,33 @@ def part3():
 
     # Plotting code here
     image = read_image()
-    plt.imshow(image), plt.title("Original Image"), plt.savefig("Original Image.png"), plt.show()
+    plt.imshow(image), plt.title("Original Image"), 
 
     rotated_img, _ = rotate_image(image)
-    plt.figure(figsize=(15,5))
-    plt.subplot(131), plt.imshow(rotated_img), plt.title("Rotated Image")
+    plt.imshow(rotated_img), plt.title("Rotated Image")
+    plt.savefig(os.path.join(output_dir, "Rotated_Image.png"))
+    plt.show()
 
     scaled_img, _ = scale_image(image)
-    plt.subplot(132), plt.imshow(scaled_img), plt.title("Scaled Image")
-
+    plt.imshow(scaled_img), plt.title("Scaled Image")
+    plt.savefig(os.path.join(output_dir, "Scaled_Image.png"))
+    plt.show()
+    
     skewed_img, _ = skew_image(image)
-    plt.subplot(133), plt.imshow(skewed_img), plt.title("Skewed Image"), plt.savefig("Rotated+Scaled+Skewed Image.png"), plt.show()
+    plt.imshow(skewed_img), plt.title("Skewed Image"), 
+    plt.savefig(os.path.join(output_dir, "Skewed_Image.png")), 
+    plt.show()
+    
 
     combined_warp_img, _ = combined_warp(image)
-    plt.figure(figsize=(10,5))
-    plt.subplot(121), plt.imshow(combined_warp_img), plt.title("Combined Warp Image")
+    plt.imshow(combined_warp_img), plt.title("Combined Warp Image")
+    plt.savefig(os.path.join(output_dir, "Combined_Warp_Image.png")), 
+    plt.show()
 
     combined_warp_bilinear_img = combined_warp_bilinear(image)
-    plt.subplot(122), plt.imshow(combined_warp_bilinear_img), plt.title("Combined Warp Image with Bilinear Interpolation"), plt.savefig("Combined Warp w Bilinear Interpolation Image.png"), plt.show()
+    plt.imshow(combined_warp_bilinear_img), plt.title("Combined Warp Image with Bilinear Interpolation"), 
+    plt.savefig(os.path.join(output_dir, "Combined_Warp_Image_with_Bilinear_Interpolation.png")),
+    plt.show() 
 
 # --- PART 4: Panorama Stitching ---
 def part4():
@@ -404,8 +422,8 @@ def part4():
 
     # Display original images
     plt.figure(figsize=(8,10))    
-    plt.subplot(221), plt.imshow(image0, cmap='gray'), plt.title("First Image")
-    plt.subplot(222), plt.imshow(image1, cmap='gray'), plt.title("Second Image")
+    plt.imshow(image0, cmap='gray'), plt.title("First Image")
+    plt.imshow(image1, cmap='gray'), plt.title("Second Image")
 
     # -------- Feature detection and matching -----
     # Initialize ORB detector
@@ -471,9 +489,10 @@ def part4():
                   output_shape=output_shape)
 
     # Display warped images
-    plt.subplot(223), plt.imshow(image0_, cmap="gray"), plt.title("Warped first image")
-    plt.subplot(224), plt.imshow(image1_, cmap="gray"), plt.title("Warped second image")
-    plt.savefig("Warped 1st & 2nd.png")
+    plt.imshow(image0_, cmap="gray"), plt.title("Warped first image")
+    plt.savefig(os.path.join(output_dir, "Warped_first_Image.png"))
+    plt.imshow(image1_, cmap="gray"), plt.title("Warped second image")
+    plt.savefig(os.path.join(output_dir, "Warped_second_Image.png"))
     plt.show()
 
     # Add alpha channel to the warped images
@@ -498,8 +517,7 @@ def part4():
     plt.figure(figsize=(8,10))
     plt.imshow(merged, cmap="gray")
     plt.imsave('imgOut.png', merged)
-    plt.savefig("Merged image.png")
-
+    plt.savefig(os.path.join(output_dir, "Merged_Panorama.png"))
     plt.show()
 
     # Plot 10 random inlier matches
@@ -514,8 +532,7 @@ def part4():
         inlier_matches[np.random.choice(inlier_matches.shape[0], 10, replace=False)],
         only_matches=True
     )
-    plt.savefig("10 random inlier matches.png")
-
+    plt.savefig(os.path.join(output_dir, "Inlier.png"))
 
     plt.show()
 
