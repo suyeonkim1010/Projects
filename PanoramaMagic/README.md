@@ -10,9 +10,9 @@ All result images are saved in the `results/` directory automatically.
 ## 🧩 Part 1 - Bayer Pattern Interpolation
 **Goal:** Reconstruct an RGB image from a Bayer-filtered grayscale input.
 
-| Green Channel | Red Channel | Blue Channel | Final RGB |
-|---------------|-------------|--------------|-----------|
-| ![](results/Bayer_Green.png) | ![](results/Bayer_Red.png) | ![](results/Bayer_Blue.png) | ![](results/Bayer_reconstruction.png) |
+| Original Channel | Green Channel | Red Channel | Blue Channel | Final RGB |
+|------------------|---------------|-------------|--------------|-----------|
+| ![](PeppersBayerGray.bmp)| ![](results/Bayer_Green.png) | ![](results/Bayer_Red.png) | ![](results/Bayer_Blue.png) | ![](results/Bayer_reconstruction.png) |
 
 ---
 
@@ -21,25 +21,25 @@ All result images are saved in the `results/` directory automatically.
 
 | Original Image | Dithered Image |
 |----------------|----------------|
-| ![](results/Original_mandrill.png) | ![](results/Dithered_mandrill.png) |
+| ![](mandrill.png) | ![](results/Dithered_mandrill.png) |
 
 ---
 
 ## 🔄 Part 3 - Geometric Transformations
 **Goal:** Apply rotation, scaling, and skew transformations and visualize the combination.
 
-| Original | Rot+Scale+Skew | Bilinear Warp |
-|----------|----------------|----------------|
-| ![](results/Original_Image.png) | ![](results/Rotated+Scaled+Skewed_Image.png) | ![](results/Combined_Warp_Bilinear.png) |
+| Original | Rotated Image | Scaled Image | Skewed Image | Combined Warp Image | Combined Warp Image with Bilinear Interpolation |
+|----------|---------------|--------------|--------------|---------------------|-------------------------------------------------|
+| ![](bird.jpeg) | ![](Rotated_Image.jpeg) | ![](Scaled_Image.jpeg) | ![](Skewed_Image.jpeg) | ![](results/Combined_Warp_Image.png) | ![](results/Combined_Warp_Image_with_Bilinear_Interpolation.png) |
 
 ---
 
 ## 🧵 Part 4 - Panorama Stitching
 **Goal:** Align and merge two overlapping images using local features.
 
-| Warped Img1 | Warped Img2 | Merged Panorama | Inlier Matches |
-|-------------|-------------|------------------|----------------|
-| ![](results/Warped_1st.png) | ![](results/Warped_2nd.png) | ![](results/Merged_image.png) | ![](results/Inlier_matches.png) |
+| Before Img1 | Before Img2 | Warped Img1 | Warped Img2 | Merged Panorama | Inlier Matches |
+|-------------|-------------|-------------|-------------|-----------------|----------------|
+| ![](im1.jpg)| ![](im2.jpg) | ![](results/Warped_first_Image.png) | ![](results/Warped_second_Image.png) | ![](results/Merged_Panorama.jpg)| ![](results/Inlier.jpg)
 
 ---
 
