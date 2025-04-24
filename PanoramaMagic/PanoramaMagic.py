@@ -168,7 +168,7 @@ def part1():
     plt.show()
 
     plt.imshow(rgb),plt.title('rgb')
-    plt.savefig(os.path.join(output_dir, "Bayer_reconstruction.png"))
+    plt.savefig(os.path.join(output_dir, "Final_RGB.png"))
     plt.show()
 
 
@@ -246,7 +246,7 @@ def part2():
 
 
     plt.imshow(img),plt.title(f'Dithered Image (nColours = {nColours})')
-    plt.savefig(os.path.join(output_dir, "Dithered_mandrill.png"))
+    plt.savefig(os.path.join(output_dir, "Dithered.png"))
     plt.show()
 
 
@@ -384,17 +384,17 @@ def part3():
 
     rotated_img, _ = rotate_image(image)
     plt.imshow(rotated_img), plt.title("Rotated Image")
-    plt.savefig(os.path.join(output_dir, "Rotated_Image.png"))
+    plt.savefig(os.path.join(output_dir, "Rotated.png"))
     plt.show()
 
     scaled_img, _ = scale_image(image)
     plt.imshow(scaled_img), plt.title("Scaled Image")
-    plt.savefig(os.path.join(output_dir, "Scaled_Image.png"))
+    plt.savefig(os.path.join(output_dir, "Scaled.png"))
     plt.show()
     
     skewed_img, _ = skew_image(image)
     plt.imshow(skewed_img), plt.title("Skewed Image"), 
-    plt.savefig(os.path.join(output_dir, "Skewed_Image.png")), 
+    plt.savefig(os.path.join(output_dir, "Skewed.png")), 
     plt.show()
     
 

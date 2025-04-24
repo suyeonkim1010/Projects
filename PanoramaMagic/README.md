@@ -12,7 +12,7 @@ All result images are saved in the `results/` directory automatically.
 
 | Original Channel | Green Channel | Red Channel | Blue Channel | Final RGB |
 |------------------|---------------|-------------|--------------|-----------|
-| ![](PeppersBayerGray.bmp)| ![](results/Bayer_Green.png) | ![](results/Bayer_Red.png) | ![](results/Bayer_Blue.png) | ![](results/Bayer_reconstruction.png) |
+| ![](PeppersBayerGray.bmp)| ![](results/Bayer_Green.png) | ![](results/Bayer_Red.png) | ![](results/Bayer_Blue.png) | ![](results/Final_RGB.png) |
 
 ---
 
@@ -21,7 +21,7 @@ All result images are saved in the `results/` directory automatically.
 
 | Original Image | Dithered Image |
 |----------------|----------------|
-| ![](mandrill.png) | ![](results/Dithered_mandrill.png) |
+| ![](mandrill.png) | ![](results/Dithered.png) |
 
 ---
 
@@ -30,7 +30,7 @@ All result images are saved in the `results/` directory automatically.
 
 | Original | Rotated Image | Scaled Image | Skewed Image | Combined Warp Image | Combined Warp Image with Bilinear Interpolation |
 |----------|---------------|--------------|--------------|---------------------|-------------------------------------------------|
-| ![](bird.jpeg) | ![](Rotated_Image.jpeg) | ![](Scaled_Image.jpeg) | ![](Skewed_Image.jpeg) | ![](results/Combined_Warp_Image.png) | ![](results/Combined_Warp_Image_with_Bilinear_Interpolation.png) |
+| ![](bird.jpeg) | ![](results/Rotated.png) | ![](results/Scaled.png) | ![](results/Skewed.png) | ![](results/Combined_Warp_Image.png) | ![](results/Combined_Warp_Image_with_Bilinear_Interpolation.png) |
 
 ---
 
@@ -39,7 +39,7 @@ All result images are saved in the `results/` directory automatically.
 
 | Before Img1 | Before Img2 | Warped Img1 | Warped Img2 | Merged Panorama | Inlier Matches |
 |-------------|-------------|-------------|-------------|-----------------|----------------|
-| ![](im1.jpg)| ![](im2.jpg) | ![](results/Warped_first_Image.png) | ![](results/Warped_second_Image.png) | ![](results/Merged_Panorama.jpg)| ![](results/Inlier.jpg)
+| ![](im1.jpg)| ![](im2.jpg) | ![](results/Warped_first_Image.png) | ![](results/Warped_second_Image.png) | ![](results/Merged_Panorama.png)| ![](results/Inlier.png)
 
 ---
 
