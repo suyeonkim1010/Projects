@@ -95,3 +95,7 @@ All intermediate and final results will be saved in the `results/` folder.
 
 ---
 
+## 🐝 Author
+Developed by **[Suyeon Kim]**. Feel free to reach out if you have any questions or suggestions!  
+GitHub Profile(https://github.com/suyeonkim1010/Projects.git)  
+LinkedIn Profile(https://www.linkedin.com/in/suyeon-kim-a43730256/) 

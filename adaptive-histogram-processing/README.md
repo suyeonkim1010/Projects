@@ -93,10 +93,11 @@ This project uses images from **Unsplash** under the [Unsplash License](https://
 - **City Night Image** 🌃  
   - 📸 [Takashi Watanabe](https://unsplash.com/@hasu_has)  
   - 🔗 [View Image](https://unsplash.com/photos/f2DL8oI-7N8)  
+  
+---
 
 ## 🐝 Author
 Developed by **[Suyeon Kim]**. Feel free to reach out if you have any questions or suggestions!  
-[GitHub Profile](https://github.com/suyeonkim1010/Projects.git)  
-[LinkedIn Profile](https://www.linkedin.com/in/suyeon-kim-a43730256/)  
-
+GitHub Profile(https://github.com/suyeonkim1010/Projects.git)  
+LinkedIn Profile(https://www.linkedin.com/in/suyeon-kim-a43730256/) 
 

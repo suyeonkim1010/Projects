@@ -62,4 +62,9 @@ All output images will be saved to the `results/` folder.
 
 ---
 
+## 🐝 Author
+Developed by **[Suyeon Kim]**. Feel free to reach out if you have any questions or suggestions!  
+GitHub Profile(https://github.com/suyeonkim1010/Projects.git)  
+LinkedIn Profile(https://www.linkedin.com/in/suyeon-kim-a43730256/) 
+
 Enjoy the visuals and pixel magic! ✨
