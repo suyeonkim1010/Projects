@@ -66,7 +66,7 @@ def detect_blob_centers():
     plt.subplot(131), plt.imshow(local_minima[..., 0], cmap='jet')
     plt.subplot(132), plt.imshow(local_minima[..., 1], cmap='jet')
     plt.subplot(133), plt.imshow(local_minima[..., 2], cmap='jet')
-    plt.savefig(os.path.join(output_dir, "local minima.png"))
+    plt.savefig(os.path.join(output_dir, "local_minima.png"))
 
     plt.show()
 

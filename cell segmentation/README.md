@@ -76,7 +76,7 @@ All intermediate and final results will be saved in the `results/` folder.
 ![DoG Levels](results/Level123.png)
 
 ### 3. Local Minima Detected  
-![Local Minima](results/local minima.png)
+![Local Minima](results/local_minima.png)
 
 ### 4. Rough Blob Centers Detected  
 ![Rough Blob Centers](results/Rough_Blob_Centers_Detected.png)
