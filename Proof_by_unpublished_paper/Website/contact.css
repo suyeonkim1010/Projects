@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+
+:root {
+    --light-green: #d4e09b;
+    --ivory-green: #f6f4d2;
+    --grey-green: #94a985;
+}
+
+body {
+    font-family: Playfair Display;
+    background-color: var(--ivory-green);
+    padding: 20px;
+    color: var(--grey-green);
+    
+}
+
+h1 {
+    text-align: center;
+    color: var(--grey-green);
+    font-size: 35px;
+}
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+    grid-template-rows: repeat(2, auto); /* Creates 2 rows with automatic height */
+    gap: 2px; /* Adds spacing between grid items (optional) */
+    justify-items: center; /* Centers items horizontally within their cells */
+    align-items: center; /* Centers items vertically within their cells */
+    
+}
+.contact-card {
+    background-color: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-left: 5px solid var(--light-green);
+    transition: background-color 0.3s;
+    width: 250px;
+    height: 150px;
+}
+
+.contact-card:hover {
+    background-color: var(--light-green);
+    color: var(--ivory-green);
+}
+
+.contact-card h2 {
+    margin: 0;
+    color: var(--grey-green);
+}
+
+.contact-card p {
+    margin: 5px 0;
+    color: var(--grey-green);
+    
+}
+
+.contact-card a {
+    color: var(--light-green);
+    text-decoration: none;
+}
+
+.contact-card a:hover {
+    color: var(--grey-green);
+    text-decoration: underline;
+}
+
+
+/* form page */
+
+#form-paper {
+    background-color: white;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+}
+
+#form-paper h1 {
+    color: var(--grey-green);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#form-paper .light-gray-text {
+    color: var(--grey-green);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#form-paper .grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+    /* background-color: blueviolet; */
+}
+
+#form-paper .grid-item {
+    padding: 10px;
+    border: 1px solid var(--grey-green);
+    border-radius: 4px;
+    background-color: var(--ivory-green);
+    color: var(--grey-green);
+    /* background-color: aquamarine; */
+    font-family: Playfair Display;
+}
+
+#form-paper .grid-item::placeholder {
+    color: var(--grey-green);
+    opacity: 0.8;
+}
+
+#form-paper .scrollable-container textarea {
+    width: 96%;
+    padding: 10px;
+    border: 1px solid var(--grey-green);
+    border-radius: 4px;
+    resize: vertical;
+    background-color: var(--ivory-green);
+    color: var(--grey-green);
+    min-height: 250px;
+
+}
+
+#form-paper .scrollable-container textarea::placeholder {
+    color: var(--grey-green);
+    opacity: 0.8;
+    font-family: Playfair Display;
+}
+
+#form-paper button {
+    font-family: Playfair Display;
+    background-color: var(--light-green);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 5px;
+    transition: background-color 0.3s;
+}
+
+#form-paper button:hover {
+    background-color: var(--grey-green);
+}
+
+
+/* Media query to make the grid stack vertically on smaller screens */
+@media (max-width: 900px) {
+    .contact-cards {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for medium-sized screens */
+    }
+}
+
+@media (max-width: 600px) {
+    #form-paper .grid-container {
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+
+    .contact-cards {
+        grid-template-columns: 1fr; /* 1 column for small screens */
+    }
+}
+

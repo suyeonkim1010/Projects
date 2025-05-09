@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contact.css">
+    <script src="contact.js" defer></script> <!-- Added defer to ensure the script runs after the page loads -->
+    <title>Contact Page</title>
+</head>
+<body>
+
+    <h1>Team Members' Contacts</h1>
+    <div class="contact-cards">
+        <div class="contact-card">
+            <h2>Gyurim Do</h2>
+            <p>Email: gyurimdo020422@gmail.com</p>
+            <p>Phone: (825) 419-4622</p>
+        </div>
+    
+        <div class="contact-card">
+            <h2>Suyeon Kim</h2>
+            <p>Email: exa@example.com</p>
+            <p>Phone: (987) 654-3210</p>
+        </div>
+    
+        <div class="contact-card">
+            <h2>Byeongkook Jung</h2>
+            <p>Email: exa@example.com</p>
+            <p>Phone: (987) 654-3210</p>
+        </div>
+    
+        <div class="contact-card">
+            <h2>Jane Smith</h2>
+            <p>Email: exa@example.com</p>
+            <p>Phone: (987) 654-3210</p>
+        </div>
+    
+        <div class="contact-card">
+            <h2>Jane Smith</h2>
+            <p>Email: exa@example.com</p>
+            <p>Phone: (987) 654-3210</p>
+        </div>
+    
+        <div class="contact-card">
+            <h2>Jane Smith</h2>
+            <p>Email: exa@example.comm</p>
+            <p>Phone: (987) 654-3210</p>
+        </div>
+    </div>
+    
+    <!-- Contact Form -->
+    <div id="form-paper">
+        <h1>If you have a question</h1>
+        <p class="light-gray-text">Send me a message! I'll get back to you as soon as I can!</p>
+        <form action="https://formspree.io/f/xqakbjrz" method="POST">
+            <div class="grid-container">
+                
+                <input class="grid-item" type="text" name="first name" placeholder="First Name" >
+                
+        
+                <input class="grid-item" type="text" name="last name" placeholder="Last Name">
+                
+                <input class="grid-item" type="text" name="email" placeholder="Email">
+                <input class="grid-item" type="text" name="phone number" placeholder="Phone number">
+             
+            </div>
+            <div class="scrollable-container">
+                <textarea name="message" placeholder="Your message"></textarea>
+            </div>
+            
+
+            <!-- your other form fields go here -->
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+</body>
+</html>

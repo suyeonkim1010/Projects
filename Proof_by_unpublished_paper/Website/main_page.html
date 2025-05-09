@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Mental Health</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 90%;
+        }
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        #loginButton, #userWelcome button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        #loginButton:hover, #userWelcome button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Student Mental Health</div>
+        <div class="subtitle">by Proof by Unpublished Paper</div>
+
+        <!-- General Info -->
+        <div id="info">
+            <p>Welcome to the Student Mental Health platform. Here is some general information available to everyone.</p>
+        </div>
+
+        <!-- Login and Welcome Display -->
+        <button id="loginButton" onclick="window.location.href = 'login_page.html';">Login</button>
+        <div id="userWelcome" style="display: none;">
+            <h2>Welcome Back!</h2>
+            <button onclick="logout()">Logout</button>
+        </div>
+    </div>
+
+    <script>
+        // Check if the user is logged in
+        if (localStorage.getItem('loggedIn') === 'true') {
+            document.getElementById('loginButton').style.display = 'none';
+            document.getElementById('userWelcome').style.display = 'block';
+        }
+
+        function logout() {
+            localStorage.removeItem('loggedIn');
+            window.location.reload();
+        }
+    </script>
+</body>
+</html>
