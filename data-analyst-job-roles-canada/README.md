@@ -13,7 +13,7 @@ The workflow covers:
    - Top skills required for Data Analysts  
    - Salary distribution across locations  
 
-3. **Dashboard (Power BI / Tableau)**  
+3. **Dashboard (Power BI)**  
    - Interactive filters by region and skill  
    - KPI cards (average salary, top 5 skills)  
    - Trend visualization  
