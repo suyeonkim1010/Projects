@@ -61,10 +61,3 @@ README.md
 - Jobs mentioning BI tools or Python tend to show slightly higher average salaries  
 
 ---
-
-## 📈 Next Steps
-- Expand dataset with new postings (2025 Q1)  
-- Include text analysis (word clouds, NER) on job descriptions  
-- Compare trends across years using time-based data  
-
----
