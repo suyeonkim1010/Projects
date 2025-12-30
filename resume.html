@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Resume | Suyeon Kim</title>
+    <style>
+      :root {
+        --ink: #1a1a1a;
+        --muted: #555555;
+        --rule: #dddddd;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #ffffff;
+        color: var(--ink);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.4;
+      }
+
+      .page {
+        width: 8.5in;
+        min-height: 11in;
+        margin: 0 auto;
+        padding: 0.75in;
+      }
+
+      h1 {
+        margin: 0 0 6px;
+        font-size: 20pt;
+        letter-spacing: 0.01em;
+      }
+
+      .contact {
+        font-size: 10pt;
+        color: var(--muted);
+      }
+
+      .contact a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .rule {
+        margin: 12px 0 18px;
+        border: none;
+        border-top: 1px solid var(--rule);
+      }
+
+      .section {
+        margin-bottom: 16px;
+      }
+
+      .section-title {
+        margin: 0 0 8px;
+        font-size: 11pt;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .summary {
+        margin: 0;
+        font-size: 10.5pt;
+        color: var(--ink);
+      }
+
+      .edu-item,
+      .skill-line,
+      .exp-item,
+      .proj-item {
+        font-size: 10pt;
+        margin: 0 0 6px;
+      }
+
+      .item-title {
+        font-weight: 600;
+      }
+
+      .item-meta {
+        color: var(--muted);
+      }
+
+      ul {
+        margin: 6px 0 0 18px;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 4px;
+      }
+
+      @media print {
+        .page {
+          margin: 0;
+          padding: 0.65in;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>SUYEON KIM</h1>
+        <div class="contact">
+          Edmonton, AB | 780-340-6457 | sopiakimsu@gmail.com
+        </div>
+        <div class="contact">
+          Portfolio:
+          <a href="https://suyeonkim1010.github.io/Projects/">suyeonkim1010.github.io/Projects</a>
+        </div>
+        <div class="contact">
+          GitHub:
+          <a href="https://github.com/suyeonkim1010">github.com/suyeonkim1010</a>
+          | LinkedIn:
+          <a href="https://www.linkedin.com/in/suyeon-kim-a43730256">linkedin.com/in/suyeon-kim-a43730256</a>
+        </div>
+      </header>
+
+      <hr class="rule" />
+
+      <section class="section">
+        <h2 class="section-title">Professional Summary</h2>
+        <p class="summary">
+          Data Engineer focused on scalable pipelines, reliable data systems, and turning raw data into
+          clean, decision-ready datasets. Fast learner who adapts quickly, organizes data and systems for
+          clear team decisions, and delivers with dependable quality and timelines.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+        <p class="edu-item">
+          <span class="item-title">University of Alberta</span> — Edmonton, AB
+        </p>
+        <p class="edu-item">Bachelor of Science in Computing Science, Minor in Mathematics</p>
+        <p class="edu-item item-meta">Completed: December 2025</p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Skills</h2>
+        <p class="skill-line">
+          <span class="item-title">Programming:</span> Python, SQL, R, Java, JavaScript, C/C++
+        </p>
+        <p class="skill-line">
+          <span class="item-title">Data Engineering:</span> ETL pipelines, data cleaning/transformations,
+          data modeling, KPI definitions
+        </p>
+        <p class="skill-line">
+          <span class="item-title">Tools:</span> Pandas, Scikit-learn, Matplotlib, Power BI, Tableau,
+          Power Query, Firebase, Git, Linux, VS Code
+        </p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Experience</h2>
+        <p class="exp-item">
+          <span class="item-title">Undergraduate Research Assistant</span> |
+          Sustainable Engineering &amp; Drug Delivery Design Lab (SE3D), University of Alberta
+          <span class="item-meta">| Jan 2025 – Present</span>
+        </p>
+        <ul>
+          <li>Built end-to-end data pipelines for real-time sensor ingestion and analysis.</li>
+          <li>Automated preprocessing, feature extraction, and model training using Python and Pandas.</li>
+          <li>Implemented validation checks and structured storage to ensure data integrity.</li>
+        </ul>
+
+        <p class="exp-item">
+          <span class="item-title">Vice President, Academic Department</span> |
+          Association of Korean Canadian Scientists and Engineers (AKCSE), Edmonton AB
+          <span class="item-meta">| Sept 2022 – Apr 2024</span>
+        </p>
+        <ul>
+          <li>Led data-driven planning for academic/networking events with 300+ participants.</li>
+          <li>Standardized workflows and introduced digital scheduling and tracking tools.</li>
+        </ul>
+
+        <p class="exp-item">
+          <span class="item-title">Math and English Tutor</span> | SONGDO Academy, Incheon, Korea
+          <span class="item-meta">| May 2023 – Aug 2023</span>
+        </p>
+        <ul>
+          <li>Taught pre-calculus and linear algebra to 50+ high school students (Grades 10–12).</li>
+          <li>Developed customized study materials and managed scheduling/client relationships.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Projects</h2>
+        <p class="proj-item">
+          <span class="item-title">Global Sales Data Pipeline &amp; Dashboard</span> | Python, SQL,
+          Power BI <span class="item-meta">| Mar 2025 – Present</span>
+        </p>
+        <ul>
+          <li>
+            Built an end-to-end pipeline for 10K+ records, standardized schemas, and delivered a KPI-ready
+            star dataset.
+          </li>
+          <li>
+            Dashboard:
+            <a href="https://public.tableau.com/views/DataAnalystJobRolesinCanada/1_1?:language=ko-KR&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link">
+              public.tableau.com/views/DataAnalystJobRolesinCanada/1_1
+            </a>
+          </li>
+          <li>
+            GitHub:
+            <a href="https://github.com/suyeonkim1010/Projects/tree/main/data-analyst-job-roles-canada">
+              github.com/suyeonkim1010/Projects/tree/main/data-analyst-job-roles-canada
+            </a>
+          </li>
+        </ul>
+
+        <p class="proj-item">
+          <span class="item-title">Automated Sensor Data Pipeline for Chemical Analysis</span> |
+          Python, Raspberry Pi, AS7262, XGBoost <span class="item-meta">| Jan 2025 – Present</span>
+        </p>
+        <ul>
+          <li>
+            Automated real-time spectral ingestion with modular preprocessing, feature engineering, and
+            versioned datasets.
+          </li>
+          <li>
+            Achieved 95%+ classification accuracy; supported continuous collection, labeling, and model
+            training.
+          </li>
+        </ul>
+
+        <p class="proj-item">
+          <span class="item-title">Stress &amp; Headache Prediction Web App</span> | R, JavaScript, HTML/CSS
+          <span class="item-meta">| Nov 2024</span>
+        </p>
+        <ul>
+          <li>
+            Built at natHACKS 2024: processed survey data into model-ready datasets and surfaced ML outputs
+            in the UI.
+          </li>
+          <li>
+            GitHub:
+            <a href="https://github.com/suyeonkim1010/Projects/tree/main/Proof_by_unpublished_paper">
+              github.com/suyeonkim1010/Projects/tree/main/Proof_by_unpublished_paper
+            </a>
+          </li>
+        </ul>
+
+        <p class="proj-item">
+          <span class="item-title">Course Project | CMPUT 301 – Software Engineering</span> | Java, Firebase,
+          Android, XML <span class="item-meta">| Jan 2023 – Apr 2023</span>
+        </p>
+        <ul>
+          <li>
+            Designed a backend data flow for QR scan events, structured Firebase data model, and low-latency
+            reads.
+          </li>
+          <li>
+            GitHub:
+            <a href="https://github.com/suyeonkim1010/Projects/tree/main/supreme-waddle">
+              github.com/suyeonkim1010/Projects/tree/main/supreme-waddle
+            </a>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>
