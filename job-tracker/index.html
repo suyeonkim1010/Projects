@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Job Tracker Studio</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="bg"></div>
+    <nav class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">Job Tracker Studio</div>
+        <div class="nav-links">
+          <a href="#tracker">Tracker</a>
+          <button id="navAuthBtn" class="nav-auth" type="button">Sign in</button>
+        </div>
+      </div>
+    </nav>
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Local job pipeline</p>
+        <h1>Job Tracker Studio</h1>
+        <p class="subhead">
+          Paste a full job description to auto-extract key details, tag skills,
+          and keep your application status in one place.
+        </p>
+        <div class="stats" id="stats"></div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Paste JD</h2>
+          <p>Full job description in Korean or English.</p>
+        </div>
+        <textarea id="jdInput" placeholder="Paste the job description here..."></textarea>
+        <div class="actions">
+          <button id="analyzeBtn" class="primary">Analyze JD</button>
+          <button id="clearBtn" class="ghost">Clear</button>
+        </div>
+        <p id="aiStatus" class="hint">AI summary is off until the local server is running.</p>
+        <div id="duplicateWarning" class="notice" hidden></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Parsed fields</h2>
+          <p>Review or tweak before saving.</p>
+        </div>
+        <form id="entryForm" class="form">
+          <div class="grid">
+            <label>
+              Company name
+              <input id="companyInput" type="text" />
+            </label>
+            <label>
+              Location
+              <input id="locationInput" type="text" />
+            </label>
+            <label>
+              Role / Title
+              <input id="roleInput" type="text" />
+            </label>
+            <label>
+              Work mode
+              <select id="workModeInput">
+                <option value="">Unknown</option>
+                <option value="Remote">Remote</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="On-site">On-site</option>
+              </select>
+            </label>
+            <label>
+              Compensation
+              <input id="compInput" type="text" placeholder="e.g. $120k-$150k" />
+            </label>
+            <label class="span-2">
+              Company summary
+              <textarea id="companySummaryInput" rows="2"></textarea>
+            </label>
+            <label class="span-2">
+              What they're hiring for
+              <textarea id="hiringInput" rows="2"></textarea>
+            </label>
+            <label class="span-2">
+              Required skills
+              <input id="skillsInput" type="text" placeholder="comma separated" />
+            </label>
+            <label class="span-2">
+              Tags
+              <input id="tagsInput" type="text" placeholder="comma separated" />
+            </label>
+            <label>
+              Status
+              <select id="statusInput">
+                <option value="Not Applied">Not Applied</option>
+                <option value="Applied">Applied</option>
+                <option value="Interviewing">Interviewing</option>
+                <option value="Offer">Offer</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </label>
+            <label>
+              Deadline
+              <input id="deadlineInput" type="date" />
+            </label>
+          </div>
+          <div class="actions">
+            <button id="saveBtn" class="primary" type="submit">Save entry</button>
+            <button id="resetBtn" class="ghost" type="button">Reset form</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <section class="panel list" id="tracker">
+      <div class="panel-header">
+        <h2>Tracker</h2>
+        <p>Filter and update your pipeline.</p>
+        <p id="syncStatus" class="hint">Sync: local only</p>
+      </div>
+      <div class="filters">
+        <input id="searchInput" type="search" placeholder="Search company, role, skills..." />
+        <select id="statusFilter">
+          <option value="">All status</option>
+          <option value="Not Applied">Not Applied</option>
+          <option value="Applied">Applied</option>
+          <option value="Interviewing">Interviewing</option>
+          <option value="Offer">Offer</option>
+          <option value="Rejected">Rejected</option>
+        </select>
+        <select id="modeFilter">
+          <option value="">All modes</option>
+          <option value="Remote">Remote</option>
+          <option value="Hybrid">Hybrid</option>
+          <option value="On-site">On-site</option>
+        </select>
+        <button id="exportBtn" class="ghost">Export CSV</button>
+        <button id="clearAllBtn" class="danger">Clear all</button>
+      </div>
+      <div id="entries" class="entries"></div>
+    </section>
+
+    <footer class="footer">
+      <p>Everything stays in your browser localStorage.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
