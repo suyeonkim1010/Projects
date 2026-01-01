@@ -5,6 +5,8 @@ This repository hosts my portfolio site and project folders. The website files l
 
 ## Portfolio site
 - Live site: https://suyeonkim1010.github.io/Projects/
+- Resume: https://suyeonkim1010.github.io/Projects/resume.html
+- Resume PDF: https://suyeonkim1010.github.io/Projects/Resume_Suyeon%20Kim.pdf
 
 ## Project folders
 - `data-analyst-job-roles-canada`: Exploratory analysis of 1,700+ Canadian data analyst job postings
