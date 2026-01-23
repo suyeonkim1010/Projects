@@ -24,11 +24,6 @@ Using the URL as the step source of truth makes refresh, browser navigation, and
 - Timeout handling with clear user messaging
 - Submission lock to prevent accidental re-submits
 
-## Screenshot / GIF
-Add your own screenshot or GIF here:
-- `./docs/screenshot.png`
-- `./docs/demo.gif`
-
 ## Local development
 ```bash
 npm install
@@ -40,7 +35,22 @@ npm run dev
 npm run mock:api
 ```
 
-Test modes (append to URL):
+## Run locally (required for submit to work)
+You must run both the mock API and the frontend, or submissions will fail.
+
+Terminal A:
+```bash
+cd /Users/suyeonkim/Desktop/Projects/insurance-quote-funnel
+npm run mock:api
+```
+
+Terminal B:
+```bash
+cd /Users/suyeonkim/Desktop/Projects/insurance-quote-funnel
+npm run dev
+```
+
+## Test modes (append to URL)
 - `?mode=success` (default)
 - `?mode=error`
 - `?mode=timeout`
