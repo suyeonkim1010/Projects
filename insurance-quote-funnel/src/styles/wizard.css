@@ -1,0 +1,103 @@
+:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+.page { max-width: 860px; margin: 40px auto; padding: 0 16px; }
+.header { margin-bottom: 16px; }
+.headerRow { display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+.headerActions { display: flex; align-items: center; gap: 12px; }
+.savedText { font-size: 12px; opacity: 0.7; }
+.supportPanel {
+  background: #f7f7f7;
+  border: 1px dashed #d0d0d0;
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 16px;
+}
+.supportTitle { font-weight: 700; margin-bottom: 6px; }
+.supportPre {
+  margin: 8px 0 0;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+.muted { opacity: 0.7; margin: 6px 0 0; }
+.card { background: #fff; border: 1px solid #eee; border-radius: 14px; padding: 18px; box-shadow: 0 6px 24px rgba(0,0,0,0.05); }
+
+.title { margin: 0 0 12px; font-size: 18px; }
+
+.field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.label { font-size: 13px; opacity: 0.8; }
+.input, .textarea {
+  border: 1px solid #ddd; border-radius: 10px; padding: 10px 12px; font-size: 14px;
+}
+.textarea { min-height: 110px; resize: vertical; }
+.inputError { border-color: #e5484d; }
+.fieldError { color: #e5484d; font-size: 12px; }
+
+.serverError {
+  background: #fff2f2; border: 1px solid #ffd1d1;
+  color: #b42318; padding: 10px 12px; border-radius: 10px;
+  margin-bottom: 12px;
+}
+.errorBanner {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fff2f2;
+  border: 1px solid #ffd1d1;
+  color: #b42318;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+.errorMeta { font-size: 12px; opacity: 0.8; margin-top: 6px; }
+.bannerActions { display: flex; align-items: center; }
+
+.row { display: flex; gap: 10px; margin-top: 14px; }
+.spaceBetween { justify-content: space-between; }
+
+.btn, .btnSecondary {
+  border: 0; border-radius: 10px; padding: 10px 14px;
+  cursor: pointer; font-weight: 600; min-height: 44px;
+}
+.btn { background: #111; color: white; }
+.btnSecondary { background: #f2f2f2; color: #111; }
+.btnLoading { opacity: 0.75; cursor: not-allowed; }
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.8s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.summary { display: grid; gap: 10px; padding: 12px; border: 1px solid #eee; border-radius: 12px; background: #fafafa; }
+.ctaGrid { display: grid; gap: 12px; margin: 16px 0; }
+.ctaCard {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid #eee;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+@media (max-width: 768px) {
+  .grid2 { grid-template-columns: 1fr; }
+  .row.spaceBetween { flex-direction: column; }
+  .headerRow { align-items: flex-start; flex-direction: column; }
+  .headerActions { width: 100%; justify-content: space-between; flex-wrap: wrap; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
