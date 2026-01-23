@@ -11,6 +11,8 @@ This repository hosts my portfolio site and project folders. The website files l
 ## Project folders
 - `data-analyst-job-roles-canada`: Exploratory analysis of 1,700+ Canadian data analyst job postings
   with a Tableau dashboard.
+- `insurance-quote-funnel`: Multi-step insurance quote funnel with URL-based step routing, validation,
+  localStorage recovery, mock API (success/error/timeout), and test coverage.
 - `Proof_by_unpublished_paper`: natHACKS 2024 team project (data-driven web app).
 - `supreme-waddle`: CMPUT 301 course project (Android/Firebase QR scan game backend work).
 - `DIGITAL IMAGE PROCESS`: Image processing coursework and demos, including:
