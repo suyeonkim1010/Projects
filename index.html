@@ -134,6 +134,16 @@
             </div>
           </div>
           <div class="skill-group">
+            <h3>Frontend Stack</h3>
+            <div class="skill-list">
+              <div class="skill-item"><span class="skill-icon">&#x269B;&#xFE0F;</span>React</div>
+              <div class="skill-item"><span class="skill-icon">&#x1F9E9;</span>React Hook Form</div>
+              <div class="skill-item"><span class="skill-icon">&#x1F9FE;</span>Zod</div>
+              <div class="skill-item"><span class="skill-icon">&#x1F6E3;&#xFE0F;</span>React Router</div>
+              <div class="skill-item"><span class="skill-icon">&#x1F680;</span>Express</div>
+            </div>
+          </div>
+          <div class="skill-group">
             <h3>Databases & Data Handling</h3>
             <div class="skill-list">
               <div class="skill-item"><span class="skill-icon">&#x1F5C3;&#xFE0F;</span>Relational data querying (SQL)</div>
@@ -150,7 +160,28 @@
           <p>A selection of recent and representative work.</p>
         </div>
 
-        <div class="cards">
+        <div class="cards-shell">
+          <button class="scroll-btn left" type="button" aria-label="Scroll projects left">
+            &#x2039;
+          </button>
+          <div class="cards" data-scroll="projects">
+          <article class="card">
+            <div class="card-top">
+              <span class="tag">Web funnel</span>
+              <span class="year">2026</span>
+            </div>
+            <h3>Insurance Quote Funnel</h3>
+            <p>
+              Built a multi-step insurance quote funnel with URL-based step persistence, validation, and
+              robust error handling, including mock API success/error/timeout flows.
+              <span class="skill-stack">&#x269B;&#xFE0F; React &middot; &#x1F9E9; React Hook Form &middot; &#x1F9FE; Zod &middot; &#x1F6E3;&#xFE0F; React Router &middot; &#x1F680; Express</span>
+            </p>
+            <div class="card-links">
+              <a href="https://insurance-quote-funnel.vercel.app">Live demo</a>
+              <a href="https://github.com/suyeonkim1010/Projects/tree/main/insurance-quote-funnel">GitHub</a>
+            </div>
+          </article>
+
           <article class="card">
             <div class="card-top">
               <span class="tag">Data engineering</span>
@@ -231,6 +262,10 @@
               <a href="https://github.com/suyeonkim1010/Projects/tree/main/supreme-waddle">GitHub</a>
             </div>
           </article>
+          </div>
+          <button class="scroll-btn right" type="button" aria-label="Scroll projects right">
+            &#x203A;
+          </button>
         </div>
       </section>
 
@@ -348,6 +383,29 @@
         );
 
         revealTargets.forEach((section) => observer.observe(section));
+      }
+
+      const cardsScroller = document.querySelector("[data-scroll='projects']");
+      const scrollLeftBtn = document.querySelector(".scroll-btn.left");
+      const scrollRightBtn = document.querySelector(".scroll-btn.right");
+
+      if (cardsScroller && scrollLeftBtn && scrollRightBtn) {
+        const updateScrollButtons = () => {
+          const { scrollLeft, scrollWidth, clientWidth } = cardsScroller;
+          scrollLeftBtn.disabled = scrollLeft <= 4;
+          scrollRightBtn.disabled = scrollLeft + clientWidth >= scrollWidth - 4;
+        };
+
+        scrollLeftBtn.addEventListener("click", () => {
+          cardsScroller.scrollBy({ left: -360, behavior: "smooth" });
+        });
+
+        scrollRightBtn.addEventListener("click", () => {
+          cardsScroller.scrollBy({ left: 360, behavior: "smooth" });
+        });
+
+        cardsScroller.addEventListener("scroll", updateScrollButtons, { passive: true });
+        updateScrollButtons();
       }
     </script>
   </body>

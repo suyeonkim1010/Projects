@@ -55,8 +55,11 @@ npm test -- --run
 ```
 
 ## Deployment
-- Vercel: https://your-vercel-demo-url.vercel.app
-- Netlify: https://your-netlify-demo-url.netlify.app
+- Vercel: https://insurance-quote-funnel.vercel.app
+- Netlify: (optional)
+
+## Source
+- GitHub: https://github.com/suyeonkim1010/Projects/tree/main/insurance-quote-funnel
 
 ## Resume bullets (example)
 - Built a multi-step insurance quote funnel with URL-state persistence, validation, and resilient error handling.

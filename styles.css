@@ -216,9 +216,38 @@ a {
 
 .cards {
   margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  display: flex;
   gap: 24px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scroll-snap-type: x mandatory;
+}
+
+.cards-shell {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.scroll-btn {
+  border: 1px solid rgba(30, 27, 22, 0.15);
+  background: #fff;
+  color: #111;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 16px rgba(30, 27, 22, 0.12);
+}
+
+.scroll-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .experience-list {
@@ -347,6 +376,8 @@ a {
   overflow: hidden;
   animation: fadeUp 0.9s ease forwards;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  flex: 0 0 320px;
+  scroll-snap-align: start;
 }
 
 .card::after {
@@ -618,6 +649,18 @@ a {
   .resume-card {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .card {
+    flex-basis: 80vw;
+  }
+
+  .cards-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .scroll-btn {
+    display: none;
   }
 }
 
