@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Software Engineer Resume | Suyeon Kim</title>
+    <style>
+      :root {
+        --ink: #1a1a1a;
+        --muted: #555555;
+        --rule: #dddddd;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #ffffff;
+        color: var(--ink);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.28;
+      }
+
+      .page {
+        width: 8.5in;
+        min-height: 11in;
+        margin: 0 auto;
+        padding: 0.75in;
+      }
+
+      h1 {
+        margin: 0 0 6px;
+        font-size: 20pt;
+        letter-spacing: 0.01em;
+      }
+
+      .contact {
+        font-size: 10pt;
+        color: var(--muted);
+      }
+
+      .contact a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .rule {
+        margin: 12px 0 18px;
+        border: none;
+        border-top: 1px solid var(--rule);
+      }
+
+      .section {
+        margin-bottom: 10px;
+      }
+
+      .section-title {
+        margin: 0 0 8px;
+        font-size: 11pt;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .summary {
+        margin: 0;
+        font-size: 10.5pt;
+        color: var(--ink);
+      }
+
+      .edu-item,
+      .skill-line,
+      .exp-item,
+      .proj-item {
+        font-size: 10pt;
+        margin: 0 0 6px;
+      }
+
+      .item-title {
+        font-weight: 600;
+      }
+
+      .item-meta {
+        color: var(--muted);
+      }
+
+      ul {
+        margin: 3px 0 0 18px;
+        padding: 0;
+      }
+
+      li {
+        margin-bottom: 2px;
+      }
+
+      @media print {
+        .page {
+          margin: 0;
+          padding: 0.65in;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <h1>SUYEON KIM</h1>
+        <div class="contact">
+          Edmonton, AB | 780-340-6457 | sopiakimsu@gmail.com
+        </div>
+        <div class="contact">
+          Portfolio:
+          <a href="https://suyeonkim1010.github.io/Projects/">suyeonkim1010.github.io/Projects</a>
+        </div>
+        <div class="contact">
+          GitHub:
+          <a href="https://github.com/suyeonkim1010">github.com/suyeonkim1010</a>
+          | LinkedIn:
+          <a href="https://www.linkedin.com/in/suyeon-kim-a43730256">linkedin.com/in/suyeon-kim-a43730256</a>
+        </div>
+      </header>
+
+      <hr class="rule" />
+
+      <section class="section">
+        <h2 class="section-title">Professional Summary</h2>
+        <p class="summary">
+          Computer Science graduate with hands-on experience building data-driven applications and backend
+          pipelines in Python, JavaScript, and SQL. Strong focus on correctness, maintainable data flows,
+          and debugging real systems. Seeking an entry-level Software Engineer role where reliability, clean
+          design, and scalability matter.
+        </p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Education</h2>
+        <p class="edu-item">
+          <span class="item-title">University of Alberta</span> — Edmonton, AB
+        </p>
+        <p class="edu-item">Bachelor of Science in Computing Science, Minor in Mathematics</p>
+        <p class="edu-item item-meta">Completed: December 2025</p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Skills</h2>
+        <p class="skill-line">
+          <span class="item-title">Programming:</span> Python, Java, JavaScript, SQL, R, C/C++
+        </p>
+        <p class="skill-line">
+          <span class="item-title">Tools:</span> Git, Linux, Firebase, Android, VS Code, React, Express
+        </p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Experience</h2>
+        <p class="exp-item">
+          <span class="item-title">Undergraduate Research Assistant</span> |
+          Sustainable Engineering &amp; Drug Delivery Design Lab (SE3D), University of Alberta
+          <span class="item-meta">| Jan 2025 – Jan 2026</span>
+        </p>
+        <ul>
+          <li>Built modular Python pipelines with clear interfaces for real-time sensor ingestion and preprocessing.</li>
+          <li>Refactored data flow logic to reduce coupling and improve maintainability.</li>
+          <li>Documented data flow and processing assumptions so experiments could be reproduced consistently.</li>
+        </ul>
+
+        <p class="exp-item">
+          <span class="item-title">Vice President, Academic Department</span> |
+          Association of Korean Canadian Scientists and Engineers (AKCSE), Edmonton AB
+          <span class="item-meta">| Sept 2022 – Apr 2024</span>
+        </p>
+        <ul>
+          <li>Coordinated event operations and scheduling workflows for academic/networking programs.</li>
+          <li>Maintained shared records and process documentation to improve team execution consistency.</li>
+        </ul>
+
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Projects</h2>
+        <p class="proj-item">
+          <span class="item-title">Global Sales Data Pipeline &amp; Dashboard</span> | Python, SQL,
+          Power BI <span class="item-meta">| Mar 2025</span>
+        </p>
+        <ul>
+          <li>Built a Python/SQL data workflow that standardized schemas and prepared clean reporting outputs.</li>
+          <li>Connected processed results to a Power BI dashboard for stakeholder-facing summaries.</li>
+        </ul>
+
+        <p class="proj-item">
+          <span class="item-title">Automated Sensor Data Pipeline for Chemical Analysis</span> |
+          Python, Raspberry Pi, AS7262, XGBoost <span class="item-meta">| Jan 2025</span>
+        </p>
+        <ul>
+          <li>Built modular ingestion and preprocessing components for continuous sensor data collection.</li>
+          <li>Added versioned datasets and reusable feature pipelines to support iterative model development.</li>
+        </ul>
+
+        <p class="proj-item">
+          <span class="item-title">Stress &amp; Headache Prediction Web App</span> | R, JavaScript, HTML/CSS
+          <span class="item-meta">| Nov 2024</span>
+        </p>
+        <ul>
+          <li>Processed and validated survey data before model inference and result rendering.</li>
+          <li>Built a web interface to collect user inputs and return predictions in a clear flow.</li>
+          <li>Documented preprocessing assumptions so teammates could maintain and iterate quickly.</li>
+        </ul>
+
+        <p class="proj-item">
+          <span class="item-title">Course Project | CMPUT 301 – Software Engineering</span> | Java, Firebase,
+          Android, XML <span class="item-meta">| Jan 2023 – Apr 2023</span>
+        </p>
+        <ul>
+          <li>Designed backend data flow for QR scan events and structured Firebase data models.</li>
+          <li>Defined validation rules and write paths to prevent duplicate and invalid records.</li>
+          <li>Collaborated on requirements, issue tracking, and iterative team releases.</li>
+        </ul>
+      </section>
+    </div>
+  </body>
+</html>
