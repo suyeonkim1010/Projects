@@ -1,6 +1,10 @@
+from unittest.mock import Mock, patch
+
 import pytest
 
-from main import build_sorted_results, calculate_match, fetch_jobs_from_api
+import requests
+
+from main import build_sorted_results, calculate_match, fetch_jobs_real_api
 
 
 def test_normal_job_match_returns_perfect():
@@ -46,13 +50,48 @@ def test_weird_data_is_cleaned_before_matching():
     assert result["level"] == "PERFECT"
 
 
-def test_timeout_api_returns_empty_job_list():
-    response = {
-        "status": "timeout",
-        "data": None,
-    }
+def test_real_api_success_returns_job_list():
+    mock_response = Mock()
+    mock_response.json.return_value = [
+        {
+            "company": {"name": "Acme"},
+        },
+        {
+            "company": {"name": "Beta"},
+        },
+    ]
+    mock_response.raise_for_status.return_value = None
 
-    result = fetch_jobs_from_api(response)
+    with patch("main.requests.get", return_value=mock_response):
+        result = fetch_jobs_real_api()
+
+    assert len(result) == 2
+    assert result[0]["title"] == "Acme QA Role"
+    assert result[0]["skills"] == ["Python", "Selenium", "Pytest"]
+    assert result[1]["title"] == "Beta QA Role"
+
+
+def test_real_api_timeout_returns_empty_job_list():
+    with patch("main.requests.get", side_effect=requests.exceptions.Timeout):
+        result = fetch_jobs_real_api()
+
+    assert result == []
+
+
+def test_real_api_request_error_returns_empty_job_list():
+    with patch("main.requests.get", side_effect=requests.exceptions.RequestException):
+        result = fetch_jobs_real_api()
+
+    assert result == []
+
+
+def test_real_api_bad_response_returns_empty_job_list():
+    mock_response = Mock()
+    mock_response.raise_for_status.return_value = None
+    mock_response.json.return_value = {"wrong_key": "wrong_value"}
+
+    with patch("main.requests.get", return_value=mock_response):
+        result = fetch_jobs_real_api()
 
     assert result == []
 
@@ -196,3 +235,27 @@ def test_duplicate_my_skills_are_counted_once():
     assert result["match_count"] == 1
     assert result["match_percent"] == 50
     assert result["level"] == "GOOD"
+
+
+def test_end_to_end_api_to_sorted_results_flow():
+    mock_response = Mock()
+    mock_response.raise_for_status.return_value = None
+    mock_response.json.return_value = [
+        {"company": {"name": "Acme"}},
+        {"company": {"name": "Beta"}},
+        {"company": {"name": "Gamma"}},
+    ]
+
+    with patch("main.requests.get", return_value=mock_response):
+        jobs = fetch_jobs_real_api()
+
+    results = build_sorted_results(jobs, ["python", "selenium", "pytest"])
+
+    assert len(jobs) == 3
+    assert len(results) == 3
+    assert results[0]["title"] == "Acme QA Role"
+    assert results[0]["match_percent"] == 100
+    assert results[0]["level"] == "PERFECT"
+    assert results[-1]["title"] == "Gamma QA Role"
+    assert results[-1]["match_percent"] == 50
+    assert results[-1]["level"] == "GOOD"

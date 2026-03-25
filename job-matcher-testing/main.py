@@ -1,3 +1,11 @@
+import logging
+
+import requests
+
+
+logger = logging.getLogger(__name__)
+
+
 my_skills = [
     "python",
     "selenium",
@@ -13,6 +21,8 @@ matching_rules = {
         {"name": "BAD", "min_percent": 0},
     ]
 }
+
+REAL_API_URL = "https://jsonplaceholder.typicode.com/users"
 
 
 job_posts = [
@@ -42,26 +52,6 @@ job_posts = [
     {
         "title": "Broken Job Weird Skills",
         "skills": ["Python", "", 123, None],
-    },
-]
-
-
-fake_api_responses = [
-    {
-        "status": "success",
-        "data": job_posts,
-    },
-    {
-        "status": "timeout",
-        "data": None,
-    },
-    {
-        "status": "error",
-        "data": None,
-    },
-    {
-        "status": "bad_response",
-        "data": {"wrong_key": "wrong_value"},
     },
 ]
 
@@ -97,29 +87,42 @@ def get_match_level(match_percent):
     return "BAD"
 
 
-def fetch_jobs_from_api(response):
-    status = response.get("status")
+def build_job_from_user(user, index):
+    skill_templates = [
+        ["Python", "Selenium", "Pytest"],
+        ["SQL", "Python"],
+        ["API Testing", "Pytest"],
+    ]
+    company_name = user.get("company", {}).get("name", "Unknown Company")
+    template = skill_templates[index % len(skill_templates)]
 
-    if status == "timeout":
-        print("API Result: TIMEOUT")
+    return {
+        "title": f"{company_name} QA Role",
+        "skills": template,
+    }
+
+
+def fetch_jobs_real_api(url=REAL_API_URL, timeout=5):
+    try:
+        response = requests.get(url, timeout=timeout)
+        response.raise_for_status()
+        data = response.json()
+    except requests.exceptions.Timeout:
+        logger.error("API timeout occurred")
         return []
-
-    if status == "error":
-        print("API Result: ERROR")
+    except requests.exceptions.RequestException:
+        logger.error("API request failed")
         return []
-
-    if status == "bad_response":
-        print("API Result: BAD RESPONSE")
+    except ValueError:
+        logger.error("API returned invalid JSON")
         return []
-
-    data = response.get("data")
 
     if not isinstance(data, list):
-        print("API Result: INVALID DATA")
+        logger.error("API returned unexpected response format")
         return []
 
-    print("API Result: SUCCESS")
-    return data
+    logger.info("API request succeeded")
+    return [build_job_from_user(user, index) for index, user in enumerate(data)]
 
 
 def calculate_match(job, my_skill_list):
@@ -158,16 +161,15 @@ def build_sorted_results(jobs, my_skill_list):
 
 
 def main():
-    api_jobs = fetch_jobs_from_api(fake_api_responses[0])
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
+    api_jobs = fetch_jobs_real_api()
+
+    if not api_jobs:
+        api_jobs = job_posts
+
     sorted_results = build_sorted_results(api_jobs, my_skills)
 
     print("My Skills:", my_skills)
-    print()
-    print("API Failure Test")
-
-    for response in fake_api_responses:
-        fetch_jobs_from_api(response)
-
     print()
     print("Job Match Results")
 
