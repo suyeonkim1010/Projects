@@ -2,9 +2,9 @@
 
 Simple Python project for SDET practice.
 
-This project matches user skills against job posts, handles broken input safely, and includes pytest tests for normal and failure scenarios.
+This project matches user skills against job posts, validates real API responses, and tests system behavior under normal, failure, and edge-case conditions.
 It handles API failures such as timeout, server errors, and invalid responses.
-It uses mocking to simulate external API behavior.
+It uses mocking to simulate external API behavior and validate retry logic without relying on live network failures.
 It is designed to test system stability under failure conditions.
 
 ## Features
@@ -13,12 +13,14 @@ It is designed to test system stability under failure conditions.
 - Score each job by percent
 - Sort jobs from highest match to lowest match
 - Handle broken job data safely
-- Simulate API timeout, error, and bad response cases
+- Validate API response schema before processing data
+- Retry failed API calls for transient timeout and request errors
 - Handle API failures such as timeout, server errors, and invalid responses
 - Use mocking to simulate external API behavior
 - Test system stability under failure conditions
-- Test behavior with pytest
-- Run automated tests with GitHub Actions CI
+- Measure coverage with `pytest-cov`
+- Run automated tests with GitHub Actions CI across multiple Python versions
+- Cover end-to-end API-to-ranking flow with automated tests
 
 ## Project Files
 
@@ -44,7 +46,7 @@ python3 main.py
 ## Test
 
 ```bash
-python3 -m pytest -v
+python3 -m pytest -v --cov=main --cov-report=term-missing
 ```
 
 ### Run One Test
@@ -58,6 +60,7 @@ python3 -m pytest -v test_main.py::test_real_api_timeout_returns_empty_job_list
 - Run `python3 -m pytest -v` for automated test validation
 - Run `python3 main.py` to check the real program output
 - Use single-test execution when you want to debug one case at a time
+- Review coverage output to check which branches are tested
 
 ## Test Case Types
 
@@ -107,6 +110,7 @@ The current example API is:
 - `https://jsonplaceholder.typicode.com/users`
 
 In `main.py`, the `fetch_jobs_real_api()` function sends a real HTTP request and converts the response into simple job-like data.
+It also validates the response schema and retries transient request failures.
 
 In `test_main.py`, API failures are tested with mocking instead of real network calls.
 This makes the tests faster, stable, and repeatable.
@@ -116,6 +120,32 @@ Mocking is used to simulate:
 - timeout
 - request error
 - bad response
+- invalid response schema
+- retry-then-success flow
+
+## Quality Improvements
+
+This project was strengthened with additional SDET-focused improvements:
+
+- response schema validation before transforming API data
+- retry logic for transient API failures
+- end-to-end flow testing from API response to final ranked output
+- coverage reporting for test completeness
+- CI execution across multiple Python versions
+
+## CI/CD
+
+GitHub Actions automatically runs the test suite on:
+
+- push to the repository
+- pull requests
+- Python 3.11, 3.12, and 3.13
+
+The workflow installs dependencies and runs:
+
+```bash
+python -m pytest -v --cov=main --cov-report=term-missing
+```
 
 ## Notes
 

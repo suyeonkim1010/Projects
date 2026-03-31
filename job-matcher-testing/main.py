@@ -23,6 +23,7 @@ matching_rules = {
 }
 
 REAL_API_URL = "https://jsonplaceholder.typicode.com/users"
+MAX_API_RETRIES = 2
 
 
 job_posts = [
@@ -87,6 +88,27 @@ def get_match_level(match_percent):
     return "BAD"
 
 
+def is_valid_user_payload(user):
+    if not isinstance(user, dict):
+        return False
+
+    company = user.get("company")
+
+    if not isinstance(company, dict):
+        return False
+
+    company_name = company.get("name")
+
+    return isinstance(company_name, str) and bool(company_name.strip())
+
+
+def validate_api_response(data):
+    if not isinstance(data, list):
+        return False
+
+    return all(is_valid_user_payload(user) for user in data)
+
+
 def build_job_from_user(user, index):
     skill_templates = [
         ["Python", "Selenium", "Pytest"],
@@ -102,27 +124,40 @@ def build_job_from_user(user, index):
     }
 
 
-def fetch_jobs_real_api(url=REAL_API_URL, timeout=5):
-    try:
-        response = requests.get(url, timeout=timeout)
-        response.raise_for_status()
-        data = response.json()
-    except requests.exceptions.Timeout:
-        logger.error("API timeout occurred")
-        return []
-    except requests.exceptions.RequestException:
-        logger.error("API request failed")
-        return []
-    except ValueError:
-        logger.error("API returned invalid JSON")
-        return []
+def fetch_jobs_real_api(url=REAL_API_URL, timeout=5, retries=MAX_API_RETRIES):
+    for attempt in range(1, retries + 2):
+        try:
+            response = requests.get(url, timeout=timeout)
+            response.raise_for_status()
+            data = response.json()
+        except requests.exceptions.Timeout:
+            logger.error("API timeout occurred on attempt %s", attempt)
 
-    if not isinstance(data, list):
-        logger.error("API returned unexpected response format")
-        return []
+            if attempt <= retries:
+                logger.info("Retrying API request after timeout")
+                continue
 
-    logger.info("API request succeeded")
-    return [build_job_from_user(user, index) for index, user in enumerate(data)]
+            return []
+        except requests.exceptions.RequestException:
+            logger.error("API request failed on attempt %s", attempt)
+
+            if attempt <= retries:
+                logger.info("Retrying API request after request error")
+                continue
+
+            return []
+        except ValueError:
+            logger.error("API returned invalid JSON")
+            return []
+
+        if not validate_api_response(data):
+            logger.error("API returned unexpected response format")
+            return []
+
+        logger.info("API request succeeded on attempt %s", attempt)
+        return [build_job_from_user(user, index) for index, user in enumerate(data)]
+
+    return []
 
 
 def calculate_match(job, my_skill_list):

@@ -347,6 +347,7 @@ a {
   font-weight: 600;
   color: var(--ink);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  cursor: pointer;
 }
 
 .skill-icon {
@@ -406,6 +407,16 @@ a {
   background: #fff;
 }
 
+.skill-item:focus-visible {
+  outline: 3px solid rgba(0, 182, 201, 0.4);
+  outline-offset: 3px;
+}
+
+.skill-active {
+  background: rgba(0, 182, 201, 0.2);
+  box-shadow: 0 22px 38px rgba(0, 182, 201, 0.24);
+}
+
 .tag {
   padding: 4px 10px;
   background: rgba(255, 106, 61, 0.15);
@@ -439,6 +450,16 @@ a {
 
 .card-links a {
   color: var(--accent-2);
+}
+
+.card-highlight {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px rgba(0, 182, 201, 0.28);
+  background: linear-gradient(180deg, rgba(0, 182, 201, 0.08), rgba(255, 255, 255, 0.98));
+}
+
+.card-highlight::after {
+  border: 2px solid rgba(0, 182, 201, 0.7);
 }
 
 .split {

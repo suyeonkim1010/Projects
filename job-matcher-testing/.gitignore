@@ -2,4 +2,5 @@
 .pytest_cache/
 __pycache__/
 *.pyc
+.coverage
 .DS_Store
