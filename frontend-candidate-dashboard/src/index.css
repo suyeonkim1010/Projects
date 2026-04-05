@@ -5,8 +5,6 @@
   --card: rgba(255, 255, 255, 0.82);
   --line: rgba(27, 23, 19, 0.1);
   --accent: #d95f39;
-  --accent-2: #0f8b8d;
-  --accent-3: #f0c36b;
   --shadow: 0 26px 54px rgba(27, 23, 19, 0.12);
 }
 
@@ -25,17 +23,22 @@ body {
     linear-gradient(180deg, #fcf8f1 0%, var(--bg) 100%);
 }
 
-h1,
-h2,
-h3,
-p {
-  margin: 0;
-}
-
 button,
 input,
 select {
   font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 .page-shell {
@@ -61,7 +64,7 @@ select {
 
 .sidebar h1,
 .hero-card h2 {
-  font-family: "Instrument Serif", serif;
+  font-family: Georgia, "Times New Roman", serif;
   letter-spacing: -0.03em;
 }
 

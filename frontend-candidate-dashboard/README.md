@@ -1,22 +1,47 @@
 # Frontend Candidate Dashboard
 
-Interactive frontend project for entry-level frontend applications.
+Interactive React frontend project for entry-level frontend applications.
 
 ## What it shows
 
-- responsive dashboard layout
-- live search and filtering
+- responsive React dashboard layout
+- live search and filtering with state-driven rendering
 - sorting by match, experience, or name
 - candidate detail panel updates without page reload
-- reusable card-based UI
+- reusable component-style UI patterns
 - polished visual hierarchy and interaction states
+
+## Tech
+
+- React
+- Vite
+- JavaScript
+- CSS
+
+## Live Demo
+
+- https://suyeonkim1010.github.io/Projects/frontend-candidate-dashboard/dist/
 
 ## Files
 
 - `index.html`
-- `styles.css`
-- `script.js`
+- `package.json`
+- `vite.config.js`
+- `src/App.jsx`
+- `src/main.jsx`
+- `src/index.css`
 
 ## Run
 
-Open `index.html` in a browser.
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+The production-ready static files are generated in `dist/`.
