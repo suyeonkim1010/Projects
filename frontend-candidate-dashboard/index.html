@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Candidate Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="sidebar">
+        <p class="eyebrow">Frontend Demo</p>
+        <h1>Candidate Dashboard</h1>
+        <p class="sidebar-copy">
+          A hiring dashboard concept focused on filtering, ranking, and reviewing candidates through a clean
+          frontend workflow.
+        </p>
+
+        <div class="sidebar-panel">
+          <p class="panel-label">Quick Filters</p>
+          <div class="filter-stack" id="statusFilters"></div>
+        </div>
+
+        <div class="sidebar-panel">
+          <p class="panel-label">View Focus</p>
+          <ul class="focus-list">
+            <li>Search candidates instantly</li>
+            <li>Review skill match summaries</li>
+            <li>Inspect candidate details without leaving the page</li>
+          </ul>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <section class="hero-card">
+          <div>
+            <p class="eyebrow">Recruiting Workspace</p>
+            <h2>Shortlist talent faster with ranked frontend workflows.</h2>
+            <p class="hero-copy">
+              Explore interactive filtering, live search, candidate detail views, and compact dashboard stats
+              in one screen.
+            </p>
+          </div>
+          <div class="hero-actions">
+            <button class="primary-btn" id="showTopMatches" type="button">Show Top Matches</button>
+            <button class="ghost-btn" id="resetFilters" type="button">Reset View</button>
+          </div>
+        </section>
+
+        <section class="stats-grid" id="statsGrid"></section>
+
+        <section class="toolbar">
+          <label class="search-box">
+            <span>Search</span>
+            <input id="searchInput" type="text" placeholder="Search by name, role, or skill" />
+          </label>
+
+          <label class="select-box">
+            <span>Sort</span>
+            <select id="sortSelect">
+              <option value="match">Highest Match</option>
+              <option value="experience">Most Experience</option>
+              <option value="name">Name</option>
+            </select>
+          </label>
+        </section>
+
+        <section class="content-grid">
+          <div class="candidate-list" id="candidateList"></div>
+
+          <aside class="detail-panel" id="detailPanel">
+            <p class="detail-kicker">Candidate Detail</p>
+            <h3>Select a candidate</h3>
+            <p class="detail-copy">
+              Click any card to inspect notes, skills, score, and interview readiness in this panel.
+            </p>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
