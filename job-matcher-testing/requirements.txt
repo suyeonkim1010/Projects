@@ -1,3 +1,4 @@
 requests
 pytest-cov
 pytest==9.0.2
+streamlit

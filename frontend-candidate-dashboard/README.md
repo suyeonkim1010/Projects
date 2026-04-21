@@ -8,6 +8,7 @@ sorting, reviewing, and inspecting candidate profiles in a single responsive int
 ## Highlights
 
 - built with React and Vite
+- end-to-end frontend coverage with Playwright
 - interactive filtering and search with state-driven rendering
 - responsive dashboard layout with reusable UI patterns
 - candidate detail view updated without page reload
@@ -28,6 +29,7 @@ sorting, reviewing, and inspecting candidate profiles in a single responsive int
 - Vite
 - JavaScript
 - CSS
+- Playwright
 
 ## Live Demo
 
@@ -54,6 +56,20 @@ frontend work in entry-level product teams.
 npm install
 npm run dev
 ```
+
+## End-to-End Tests
+
+```bash
+npx playwright install
+npm run test:e2e
+```
+
+Current Playwright coverage includes:
+- search filtering
+- status filter behavior
+- candidate detail panel updates
+
+The tests validate core frontend flows instead of only static rendering.
 
 ## Build
 

@@ -186,6 +186,7 @@ function App() {
                 key={status}
                 className={`filter-chip ${selectedStatus === status ? "is-active" : ""}`}
                 type="button"
+                data-testid={`status-filter-${status.toLowerCase()}`}
                 onClick={() => setSelectedStatus(status)}
               >
                 {status}
@@ -218,6 +219,7 @@ function App() {
             <button
               className="primary-btn"
               type="button"
+              data-testid="show-top-matches"
               onClick={() => {
                 setSelectedStatus("All");
                 setSortBy("match");
@@ -226,7 +228,7 @@ function App() {
             >
               Show Top Matches
             </button>
-            <button className="ghost-btn" type="button" onClick={resetView}>
+            <button className="ghost-btn" type="button" data-testid="reset-view" onClick={resetView}>
               Reset View
             </button>
           </div>
@@ -236,7 +238,12 @@ function App() {
           {stats.map((item) => (
             <article className="stats-card" key={item.label}>
               <p className="stats-label">{item.label}</p>
-              <p className="stats-value">{item.value}</p>
+              <p
+                className="stats-value"
+                data-testid={item.label.toLowerCase().replace(/\s+/g, "-")}
+              >
+                {item.value}
+              </p>
             </article>
           ))}
         </section>
@@ -247,6 +254,7 @@ function App() {
             <input
               type="text"
               placeholder="Search by name, role, or skill"
+              data-testid="candidate-search"
               value={searchTerm}
               onChange={(event) => setSearchTerm(event.target.value)}
             />
@@ -254,7 +262,11 @@ function App() {
 
           <label className="select-box">
             <span>Sort</span>
-            <select value={sortBy} onChange={(event) => setSortBy(event.target.value)}>
+            <select
+              value={sortBy}
+              data-testid="sort-select"
+              onChange={(event) => setSortBy(event.target.value)}
+            >
               <option value="match">Highest Match</option>
               <option value="experience">Most Experience</option>
               <option value="name">Name</option>
@@ -271,6 +283,7 @@ function App() {
                   className={`candidate-card ${
                     selectedCandidate?.id === candidate.id ? "is-selected" : ""
                   }`}
+                  data-testid={`candidate-card-${candidate.id}`}
                   onClick={() => setSelectedCandidateId(candidate.id)}
                 >
                   <div className="candidate-head">
@@ -299,17 +312,17 @@ function App() {
                 </article>
               ))
             ) : (
-              <div className="empty-state">
+              <div className="empty-state" data-testid="empty-state">
                 No candidates match the current filters. Try a different search term or reset the view.
               </div>
             )}
           </div>
 
-          <aside className="detail-panel">
+          <aside className="detail-panel" data-testid="candidate-detail-panel">
             {selectedCandidate ? (
               <>
                 <p className="detail-kicker">Candidate Detail</p>
-                <h3>{selectedCandidate.name}</h3>
+                <h3 data-testid="candidate-detail-name">{selectedCandidate.name}</h3>
                 <p className="detail-copy">
                   {selectedCandidate.role} based in {selectedCandidate.location} with{" "}
                   {selectedCandidate.experience} years of experience and a {selectedCandidate.match}% fit

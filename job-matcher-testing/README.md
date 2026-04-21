@@ -6,6 +6,7 @@ This project matches user skills against job posts, validates real API responses
 It handles API failures such as timeout, server errors, and invalid responses.
 It uses mocking to simulate external API behavior and validate retry logic without relying on live network failures.
 It is designed to test system stability under failure conditions.
+It also includes a lightweight Streamlit app so the project can be hosted with a free deployment option.
 
 ## Features
 
@@ -21,11 +22,13 @@ It is designed to test system stability under failure conditions.
 - Measure coverage with `pytest-cov`
 - Run automated tests with GitHub Actions CI across multiple Python versions
 - Cover end-to-end API-to-ranking flow with automated tests
+- Include a Streamlit UI for free-hosted demo deployment
 
 ## Project Files
 
 - `main.py`: matching logic and console output
 - `test_main.py`: pytest test cases
+- `streamlit_app.py`: lightweight demo UI for deployment
 - `requirements.txt`: project dependencies
 
 ## Setup
@@ -41,6 +44,12 @@ python3 -m pip install -r requirements.txt
 
 ```bash
 python3 main.py
+```
+
+## Run Streamlit Demo
+
+```bash
+streamlit run streamlit_app.py
 ```
 
 ## Test
@@ -146,6 +155,39 @@ The workflow installs dependencies and runs:
 ```bash
 python -m pytest -v --cov=main --cov-report=term-missing
 ```
+
+This is a CI pipeline, not a full release pipeline. It validates code changes, installs dependencies, and runs the automated test suite across multiple Python versions.
+
+## Deployment
+
+### Recommended Free Option
+
+For this project, the most practical free deployment target is **Streamlit Community Cloud**.
+
+Why this fits:
+- It is free for Streamlit apps
+- It deploys directly from GitHub
+- It matches this project's lightweight Python demo format better than a full web-service host
+
+Other options:
+- **Render** also offers free web services, but it is more useful when you already have a web server such as Flask or FastAPI
+- **Railway** is no longer the best "fully free" option for an ongoing student demo because its free usage is limited by credits/trial usage
+
+### Deployment Files
+
+This repository now includes:
+- `streamlit_app.py` as the demo entrypoint
+- `requirements.txt` with `streamlit`
+
+### Deploy on Streamlit Community Cloud
+
+1. Push `job-matcher-testing` to GitHub
+2. Open Streamlit Community Cloud
+3. Choose the repository and branch
+4. Set the entrypoint file to `job-matcher-testing/streamlit_app.py`
+5. Deploy
+
+After that, Streamlit hosts the app on a public `streamlit.app` URL and updates it when you push new commits.
 
 ## Notes
 
