@@ -1,4 +1,6 @@
 requests
+beautifulsoup4
+pypdf
 pytest-cov
 pytest==9.0.2
 streamlit

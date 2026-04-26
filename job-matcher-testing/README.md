@@ -1,34 +1,46 @@
 # Job Matcher Testing
 
-Simple Python project for SDET practice.
+QA/SDET practice project for analyzing resumes and pasted job descriptions, extracting skills, calculating match scores, and generating application feedback.
 
-This project matches user skills against job posts, validates real API responses, and tests system behavior under normal, failure, and edge-case conditions.
-It handles API failures such as timeout, server errors, and invalid responses.
-It uses mocking to simulate external API behavior and validate retry logic without relying on live network failures.
-It is designed to test system stability under failure conditions.
-It also includes a lightweight Streamlit app so the project can be hosted with a free deployment option.
+This project is designed as a practical workflow tool rather than a static scoring demo.
+
+## Product Flow
+
+```text
+[User]
+  -> upload resume
+  -> paste job description
+[Program]
+  -> extract resume skills
+  -> extract job skills
+  -> calculate match score
+  -> generate feedback
+  -> generate resume improvement comments
+  -> save pasted JD in session history
+  -> show results in Streamlit UI
+```
 
 ## Features
 
-- Match job skills against user skills
-- Score each job by percent
-- Sort jobs from highest match to lowest match
-- Handle broken job data safely
-- Validate API response schema before processing data
-- Retry failed API calls for transient timeout and request errors
-- Handle API failures such as timeout, server errors, and invalid responses
-- Use mocking to simulate external API behavior
-- Test system stability under failure conditions
-- Measure coverage with `pytest-cov`
+- Extract skills from uploaded PDF/TXT resumes
+- Extract skills from job-description text using pattern matching
+- Add and remove custom skills and keywords directly in the UI
+- Match extracted job skills against extracted resume skills
+- Score the match by percent and level
+- Generate matched-skills and missing-skills feedback
+- Generate resume improvement comments based on missing skills
+- Save extracted resume skills locally so they survive refresh
+- Save pasted job descriptions in local history
+- Show a Streamlit UI for resume-to-JD comparison
+- Retry failed HTTP requests
+- Validate API-style failure handling with automated tests
 - Run automated tests with GitHub Actions CI across multiple Python versions
-- Cover end-to-end API-to-ranking flow with automated tests
-- Include a Streamlit UI for free-hosted demo deployment
 
 ## Project Files
 
-- `main.py`: matching logic and console output
+- `main.py`: extraction, matching, and feedback logic
+- `streamlit_app.py`: deployed UI flow
 - `test_main.py`: pytest test cases
-- `streamlit_app.py`: lightweight demo UI for deployment
 - `requirements.txt`: project dependencies
 
 ## Setup
@@ -40,17 +52,20 @@ source .venv/bin/activate
 python3 -m pip install -r requirements.txt
 ```
 
-## Run
-
-```bash
-python3 main.py
-```
-
-## Run Streamlit Demo
+## Run Streamlit UI
 
 ```bash
 streamlit run streamlit_app.py
 ```
+
+Then open the local URL shown by Streamlit, usually:
+
+```bash
+http://localhost:8501
+```
+
+On first run, Streamlit may ask for an email address in the terminal.
+This is optional and comes from Streamlit itself, not from this project.
 
 ## Test
 
@@ -58,89 +73,222 @@ streamlit run streamlit_app.py
 python3 -m pytest -v --cov=main --cov-report=term-missing
 ```
 
-### Run One Test
+## User Guide
 
-```bash
-python3 -m pytest -v test_main.py::test_real_api_timeout_returns_empty_job_list
+### 1. Add Your Resume
+
+You can provide your resume in either of these ways:
+
+- upload a `PDF` file
+- upload a `TXT` file
+
+The app extracts recognized skills automatically from the resume content.
+
+### 2. Add a Job Description
+
+Paste the full job description into the text area.  
+The app uses the first non-empty line as the job title automatically.
+
+This version does **not** depend on job-board URLs, which makes it more stable than direct scraping.
+
+### 3. Analyze the Match
+
+Click `Analyze Job`.
+
+The app will:
+
+- extract resume skills
+- extract job skills
+- compare them
+- calculate a percent match
+- assign a level such as `PERFECT`, `GOOD`, `OK`, or `BAD`
+- generate feedback
+- generate resume improvement comments
+
+### 4. Review the Results
+
+The UI shows:
+
+- match percent
+- match level
+- apply score
+- apply recommendation
+- extracted resume skills
+- extracted job skills
+- matched skills
+- missing skills
+- feedback summary
+- resume improvement comments
+
+Apply recommendation guide:
+
+- `80+` -> `STRONG APPLY`
+- `60-79` -> `APPLY`
+- `<60` -> `SKIP`
+
+### 4.1 How the Scores Are Calculated
+
+#### Skill Match
+
+This is the base percentage match between:
+
+- skills extracted from the JD
+- skills extracted from the resume
+
+Example:
+
+- JD skills: `Python, Selenium, Pytest`
+- Resume skills: `Python, Pytest`
+- Skill Match: `2 / 3 = 66.7%`
+
+#### Core Skill Match
+
+Not all skills are treated equally.
+
+The app tries to identify more important JD skills by looking at:
+
+- sentences containing words like `required`, `must`, `minimum`, `requirements`, or `qualifications`
+- earlier JD sentences, excluding `preferred`, `nice to have`, or `bonus` wording
+
+Then it calculates how many of those core skills appear in the resume skill list.
+
+#### Required Skills vs Preferred Skills
+
+The app also separates JD skills into two buckets:
+
+- `Required Skills`
+- `Preferred Skills`
+
+Rules:
+
+- `required`, `must`, `minimum`, `required qualifications`, `minimum qualifications`
+  -> `Required Skills`
+- `preferred`, `nice to have`, `bonus`, `asset`
+  -> `Preferred Skills`
+
+This helps distinguish hard requirements from optional extras.
+
+#### Role Fit
+
+Role fit is a rule-based category check.
+
+The app tries to infer whether the JD and resume are closer to:
+
+- `QA/SDET`
+- `Frontend`
+- `Backend`
+- `Data`
+
+If both sides fall into the same category, role fit is higher.
+
+Important:
+
+- this is a rough heuristic
+- it is less trustworthy than `Skill Match` or `Core Skill Match`
+
+#### Experience Fit
+
+The app looks for year requirements in the JD, such as:
+
+- `5+ years`
+- `3 years`
+- `2 yrs`
+
+It also tries to estimate experience from the resume:
+
+- explicit year counts if present
+- otherwise `entry-level`, `junior`, or `intern` implies a low estimate
+
+Then it compares:
+
+- `candidate_years / required_years * 100`
+
+If the candidate has fewer years than required, the app applies an additional penalty:
+
+- `experience_fit_score *= 0.5`
+
+This makes large experience gaps hurt more realistically.
+
+#### Final Apply Score
+
+The final score is calculated as:
+
+```python
+apply_score = (
+    0.5 * skill_match +
+    0.2 * core_skill_match +
+    0.2 * role_fit +
+    0.1 * experience_fit
+)
 ```
 
-### What To Test
+Interpretation:
 
-- Run `python3 -m pytest -v` for automated test validation
-- Run `python3 main.py` to check the real program output
-- Use single-test execution when you want to debug one case at a time
-- Review coverage output to check which branches are tested
+- `80+` -> `STRONG APPLY`
+- `60-79` -> `APPLY`
+- `<60` -> `SKIP`
 
-## Test Case Types
+### 5. Add Missing Skills or Keywords
 
-### Normal Case
+If the app misses an important skill in either the resume or the JD:
 
-A normal case means the input is valid and the program behaves as expected.
+- open the `Custom Skills / Keywords` section in the sidebar
+- enter a `Skill Name`
+- enter comma-separated keywords or phrases
+- click `Add or Update Skill`
 
-Examples:
-- a job has a valid `title`
-- a job has a valid `skills` list
-- `my_skills` is a valid list
-- the match result is calculated correctly
+Example:
 
-### Failure Case
+- `Skill Name`: `Jira`
+- `Keywords`: `jira, atlassian jira`
 
-A failure case means something goes wrong, such as bad input or an API problem.
-The important point is that the program should handle the problem safely without crashing.
+After that, the new skill is used immediately for both:
 
-Examples:
-- API timeout
-- API error
-- bad API response
-- missing `skills`
-- `skills = None`
+- resume skill extraction
+- JD skill extraction
 
-### Edge Case
+### 6. Reuse the Resume After Refresh
 
-An edge case is a boundary or unusual input that can easily be missed during testing.
-These cases help verify that the logic still works correctly in tricky situations.
+Once a resume has been uploaded or pasted, the app stores:
 
-Examples:
-- `49%` should be `OK`
-- `50%` should be `GOOD`
-- `1%` should be `OK`
-- `0%` should be `BAD`
-- `job = {}`
-- `job = {"skills": "Python"}`
-- `my_skills = None`
-- duplicate skills like `["Python", "Python"]`
-- case-insensitive matching like `"Python"` vs `"python"`
+- the resume text
+- the extracted resume skills
 
-## Real API and Mocking
+in a local cache file for this app instance.
 
-This project uses a real HTTP API with the `requests` library.
-The current example API is:
+That means you do **not** need to upload or paste the resume again after refreshing the page.
 
-- `https://jsonplaceholder.typicode.com/users`
+Use `Clear Resume` if you want to remove the saved resume and switch to a different one.
 
-In `main.py`, the `fetch_jobs_real_api()` function sends a real HTTP request and converts the response into simple job-like data.
-It also validates the response schema and retries transient request failures.
+### 7. Review Saved Job Descriptions
 
-In `test_main.py`, API failures are tested with mocking instead of real network calls.
-This makes the tests faster, stable, and repeatable.
+Each pasted JD is stored in local history.
 
-Mocking is used to simulate:
-- success response
-- timeout
-- request error
-- bad response
-- invalid response schema
-- retry-then-success flow
+The app keeps a short recent list so you can:
 
-## Quality Improvements
+- review previous pasted job descriptions
+- compare multiple jobs in one session
 
-This project was strengthened with additional SDET-focused improvements:
+## Current Limitations
 
-- response schema validation before transforming API data
-- retry logic for transient API failures
-- end-to-end flow testing from API response to final ranked output
-- coverage reporting for test completeness
-- CI execution across multiple Python versions
+- skill extraction uses rule-based pattern matching, not LLM parsing
+- unsupported or unusual skill wording may need to be added through the custom-skills sidebar
+- direct job-board scraping is intentionally not the primary workflow now
+
+## Testing Strategy
+
+This project covers:
+
+- normal matching behavior
+- broken or missing input data
+- invalid JSON / unexpected API response handling
+- skill extraction from resume text
+- skill extraction from description text
+- job-description extraction from HTML
+- end-to-end text analysis flow
+- resume improvement comment generation
+
+Mocking is still used for the API-oriented test coverage that already exists in this project.
 
 ## CI/CD
 
@@ -156,7 +304,7 @@ The workflow installs dependencies and runs:
 python -m pytest -v --cov=main --cov-report=term-missing
 ```
 
-This is a CI pipeline, not a full release pipeline. It validates code changes, installs dependencies, and runs the automated test suite across multiple Python versions.
+This is a CI pipeline. Deployment is handled separately through Streamlit Community Cloud.
 
 ## Deployment
 
@@ -165,19 +313,10 @@ This is a CI pipeline, not a full release pipeline. It validates code changes, i
 For this project, the most practical free deployment target is **Streamlit Community Cloud**.
 
 Why this fits:
-- It is free for Streamlit apps
-- It deploys directly from GitHub
-- It matches this project's lightweight Python demo format better than a full web-service host
 
-Other options:
-- **Render** also offers free web services, but it is more useful when you already have a web server such as Flask or FastAPI
-- **Railway** is no longer the best "fully free" option for an ongoing student demo because its free usage is limited by credits/trial usage
-
-### Deployment Files
-
-This repository now includes:
-- `streamlit_app.py` as the demo entrypoint
-- `requirements.txt` with `streamlit`
+- it supports lightweight Python apps well
+- it deploys directly from GitHub
+- it matches the current UI architecture without needing Flask or FastAPI
 
 ### Deploy on Streamlit Community Cloud
 
@@ -187,9 +326,4 @@ This repository now includes:
 4. Set the entrypoint file to `job-matcher-testing/streamlit_app.py`
 5. Deploy
 
-After that, Streamlit hosts the app on a public `streamlit.app` URL and updates it when you push new commits.
-
-## Notes
-
-- One test is marked with `xfail` on purpose to show an intentional failure example.
-- Recommended workflow is to use the local virtual environment instead of system Python.
+After deployment, the app gets a public `streamlit.app` URL and updates when new commits are pushed.

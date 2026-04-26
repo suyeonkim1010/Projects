@@ -12,8 +12,9 @@ This repository hosts my portfolio site and project folders. The website files l
 ## Highlighted projects
 - `frontend-candidate-dashboard`: React + Vite candidate review dashboard with live search, status filters,
   sorting, and dynamic detail views.
-- `job-matcher-testing`: Python QA/SDET practice project covering API validation, retry logic, mocking,
-  edge cases, pytest, coverage, and GitHub Actions CI.
+- `job-matcher-testing`: Streamlit-based resume-to-JD analyzer that extracts skills, separates required and
+  preferred skills, scores role fit and experience fit, and generates apply recommendations with pytest-backed
+  QA coverage.
 - `insurance-quote-funnel`: Multi-step React quote flow with validation, route-based progress, mock API
   states, and test coverage.
 

@@ -4,3 +4,5 @@ __pycache__/
 *.pyc
 .coverage
 .DS_Store
+jd_history.json
+resume_cache.json
