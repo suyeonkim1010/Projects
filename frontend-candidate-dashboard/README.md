@@ -10,6 +10,8 @@ sorting, reviewing, and inspecting candidate profiles in a single responsive int
 - built with React and Vite
 - end-to-end frontend coverage with Playwright
 - interactive filtering and search with state-driven rendering
+- quick filters for status and region
+- expanded candidate pool with more varied frontend profiles
 - responsive dashboard layout with reusable UI patterns
 - candidate detail view updated without page reload
 - live deployed demo for portfolio review
@@ -18,7 +20,9 @@ sorting, reviewing, and inspecting candidate profiles in a single responsive int
 
 - responsive React dashboard layout
 - live search and filtering with state-driven rendering
+- location-aware quick filtering by province and remote status
 - sorting by match, experience, or name
+- visible UI feedback when top-match and reset actions run
 - candidate detail panel updates without page reload
 - reusable component-style UI patterns
 - polished visual hierarchy and interaction states
@@ -67,6 +71,7 @@ npm run test:e2e
 Current Playwright coverage includes:
 - search filtering
 - status filter behavior
+- region filter behavior
 - candidate detail panel updates
 
 The tests validate core frontend flows instead of only static rendering.

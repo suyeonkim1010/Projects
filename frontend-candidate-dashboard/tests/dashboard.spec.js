@@ -20,6 +20,16 @@ test("updates visible results when a status filter is selected", async ({ page }
   await expect(page.getByTestId("visible-candidates")).toHaveText("2");
 });
 
+test("filters candidates by region", async ({ page }) => {
+  await page.goto("/");
+
+  await page.getByTestId("region-filter-on").click();
+
+  await expect(page.getByTestId("candidate-card-1")).toBeVisible();
+  await expect(page.getByTestId("candidate-card-7")).toBeVisible();
+  await expect(page.getByTestId("candidate-card-2")).toHaveCount(0);
+});
+
 test("updates the detail panel when a candidate card is clicked", async ({ page }) => {
   await page.goto("/");
 

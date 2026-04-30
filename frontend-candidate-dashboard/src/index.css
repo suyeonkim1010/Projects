@@ -103,6 +103,10 @@ p {
   gap: 10px;
 }
 
+.region-stack {
+  margin-top: 12px;
+}
+
 .filter-chip {
   padding: 10px 14px;
   border: none;
@@ -201,6 +205,18 @@ p {
   margin-top: 18px;
 }
 
+.action-banner {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border: 1px solid rgba(15, 139, 141, 0.22);
+  border-radius: 18px;
+  background: rgba(15, 139, 141, 0.12);
+  color: #0d5f60;
+  font-size: 0.95rem;
+  font-weight: 700;
+  animation: bannerFade 1.8s ease;
+}
+
 .stats-card {
   padding: 18px;
   border-radius: 22px;
@@ -251,6 +267,11 @@ p {
   margin-top: 18px;
 }
 
+.content-grid.is-refreshed .candidate-card,
+.content-grid.is-refreshed .detail-panel {
+  animation: refreshedPulse 0.9s ease;
+}
+
 .candidate-list {
   display: grid;
   gap: 14px;
@@ -261,6 +282,41 @@ p {
   border-radius: 24px;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+@keyframes refreshedPulse {
+  0% {
+    transform: translateY(0);
+    box-shadow: var(--shadow);
+    border-color: var(--line);
+  }
+  35% {
+    transform: translateY(-4px);
+    box-shadow: 0 28px 60px rgba(15, 139, 141, 0.18);
+    border-color: rgba(15, 139, 141, 0.35);
+  }
+  100% {
+    transform: translateY(0);
+    box-shadow: var(--shadow);
+    border-color: var(--line);
+  }
+}
+
+@keyframes bannerFade {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  14% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  84% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.92;
+  }
 }
 
 .candidate-card:hover,

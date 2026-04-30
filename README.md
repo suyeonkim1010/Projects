@@ -3,33 +3,22 @@
 This repository hosts my portfolio site and project folders. The website files live at the repo root
 (`index.html`, `styles.css`, `profile.png`) and are published with GitHub Pages.
 
-## Portfolio site
-- Live site: https://suyeonkim1010.github.io/Projects/
-- Resume: https://suyeonkim1010.github.io/Projects/RESUME/resume.html
-- Frontend resume: https://suyeonkim1010.github.io/Projects/RESUME/resume_front.html
-- Resume PDF: https://suyeonkim1010.github.io/Projects/Resume_Suyeon%20Kim.pdf
-
 ## Highlighted projects
-- `frontend-candidate-dashboard`: React + Vite candidate review dashboard with live search, status filters,
-  sorting, and dynamic detail views.
-- `job-matcher-testing`: Streamlit-based resume-to-JD analyzer that extracts skills, separates required and
-  preferred skills, scores role fit and experience fit, and generates apply recommendations with pytest-backed
-  QA coverage.
-- `insurance-quote-funnel`: Multi-step React quote flow with validation, route-based progress, mock API
-  states, and test coverage.
+- `frontend-candidate-dashboard`: Recruiter-style React dashboard with live search, status and region filters,
+  candidate ranking, detail-panel updates, and Playwright end-to-end coverage.
+- `job-matcher-testing`: Streamlit resume-to-JD analyzer that extracts skills, separates required and preferred
+  requirements, scores role fit and experience fit, and generates apply recommendations with pytest-backed QA
+  coverage.
+- `insurance-quote-funnel`: Multi-step React quote flow with route-aware progression, form validation, mock API
+  states, and resilient error handling.
 
 ## Project folders
-- `data-analyst-job-roles-canada`: Exploratory analysis of 1,700+ Canadian data analyst job postings
-  with a Tableau dashboard.
-- `Proof_by_unpublished_paper`: natHACKS 2024 team project (data-driven web app).
-- `supreme-waddle`: CMPUT 301 course project (Android/Firebase QR scan game backend work).
-- `job-tracker`: Local-first job tracking project with tagging, duplicate detection, and optional AI
-  summaries.
-- `RESUME`: HTML resume collection for general, data, QA, software, and frontend applications.
-- `DIGITAL IMAGE PROCESS`: Image processing coursework and demos, including:
-  - `PanoramaMagic`: Classic image processing showcase (Bayer, dithering, transforms, panorama).
-  - `jpeg-compressor`: JPEG encoder/decoder pipeline in Python.
-  - `Image-Processing-Toolbox`: Modular filtering, edge detection, inpainting, enhancement tools.
-  - `CIFAR10-CNN-Classifier`: CNN classifier trained on CIFAR-10 using PyTorch.
-  - `adaptive-histogram-processing`: Histogram equalization and matching for contrast enhancement.
-  - `adaptive-histogram-processing/cell segmentation`: Cell segmentation with DoG + watershed.
+- `RESUME`: HTML resume set for frontend, QA/SDET, software, data, and general applications.
+- `frontend-candidate-dashboard`: React portfolio project for candidate review, filtering, sorting, and E2E-tested UI flows.
+- `job-matcher-testing`: Python and Streamlit project for resume-to-JD analysis, scoring, and QA-focused rule testing.
+- `insurance-quote-funnel`: Frontend form workflow project showing validation, routing, and failure-state handling.
+- `job-tracker`: Local-first application tracker with tagging, duplicate detection, and optional AI summaries.
+- `data-analyst-job-roles-canada`: Canadian job-market analysis project with structured datasets and a dashboard layer.
+- `Proof_by_unpublished_paper`: natHACKS web prototype combining data input, prediction flow, and UI output.
+- `supreme-waddle`: CMPUT 301 Android/Firebase course project focused on backend data flow and live game support.
+- `DIGITAL IMAGE PROCESS`: Collection of image-processing coursework, classical CV pipelines, and model-based experiments.

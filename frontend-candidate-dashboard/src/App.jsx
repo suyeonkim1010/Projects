@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 const candidates = [
   {
@@ -103,21 +103,150 @@ const candidates = [
       "Documented frontend patterns for the team",
     ],
   },
+  {
+    id: 7,
+    name: "Priya Nair",
+    role: "Frontend Platform Engineer",
+    status: "Review",
+    experience: 6,
+    match: 89,
+    location: "Ottawa, ON",
+    skills: ["React", "TypeScript", "Design Systems", "Testing"],
+    summary:
+      "Strong platform-minded frontend engineer with experience building reusable UI primitives and team-wide standards.",
+    highlights: [
+      "Built shared component libraries used across multiple product teams",
+      "Improved release confidence with stronger frontend test coverage",
+      "Partnered with designers on token and pattern consistency",
+    ],
+  },
+  {
+    id: 8,
+    name: "Jasper Lee",
+    role: "Frontend Developer",
+    status: "New",
+    experience: 2,
+    match: 82,
+    location: "Winnipeg, MB",
+    skills: ["JavaScript", "React", "CSS", "Accessibility"],
+    summary:
+      "Implementation-focused frontend developer with solid accessibility habits and careful UI polish.",
+    highlights: [
+      "Built accessible form flows for internal admin screens",
+      "Improved keyboard navigation across interactive tables",
+      "Worked closely with QA to resolve UI regressions quickly",
+    ],
+  },
+  {
+    id: 9,
+    name: "Elena Martinez",
+    role: "Growth Frontend Engineer",
+    status: "Offer",
+    experience: 4,
+    match: 91,
+    location: "Remote",
+    skills: ["React", "Experimentation", "Analytics", "Performance"],
+    summary:
+      "Comfortable with growth-focused frontend work tied to experiment speed, analytics, and landing-page performance.",
+    highlights: [
+      "Ran A/B test implementations across acquisition funnels",
+      "Improved Core Web Vitals on campaign pages",
+      "Translated product metrics into UI experimentation priorities",
+    ],
+  },
+  {
+    id: 10,
+    name: "Hana Park",
+    role: "Design Systems Engineer",
+    status: "Review",
+    experience: 5,
+    match: 87,
+    location: "Halifax, NS",
+    skills: ["React", "Storybook", "Tokens", "CSS"],
+    summary:
+      "Specialized in creating maintainable design-system foundations and reusable component APIs.",
+    highlights: [
+      "Shipped documented component patterns for internal teams",
+      "Standardized spacing and typography tokens across product surfaces",
+      "Reduced one-off UI implementation drift",
+    ],
+  },
+  {
+    id: 11,
+    name: "Marcus Johnson",
+    role: "Frontend Engineer",
+    status: "New",
+    experience: 3,
+    match: 85,
+    location: "Victoria, BC",
+    skills: ["TypeScript", "React", "API Integration", "Playwright"],
+    summary:
+      "Balanced product engineer with solid ownership over connected UI flows and frontend testing.",
+    highlights: [
+      "Implemented account-management screens tied to API workflows",
+      "Added Playwright coverage for critical checkout and settings flows",
+      "Improved frontend error-state consistency across screens",
+    ],
+  },
+  {
+    id: 12,
+    name: "Amelia Green",
+    role: "Junior UI Engineer",
+    status: "Offer",
+    experience: 1,
+    match: 80,
+    location: "Quebec City, QC",
+    skills: ["HTML", "CSS", "Figma", "React"],
+    summary:
+      "Early-career UI engineer with strong visual execution, handoff discipline, and responsive layout habits.",
+    highlights: [
+      "Built marketing and product support pages from Figma handoff",
+      "Handled responsive fixes across tablet and mobile breakpoints",
+      "Maintained visual consistency across repeated sections",
+    ],
+  },
 ];
 
 const statuses = ["All", "New", "Review", "Interview", "Offer"];
+const regions = ["All", "Remote", "AB", "BC", "MB", "NS", "ON", "QC"];
 
 function App() {
   const [selectedStatus, setSelectedStatus] = useState("All");
+  const [selectedRegion, setSelectedRegion] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("match");
   const [selectedCandidateId, setSelectedCandidateId] = useState(candidates[0].id);
+  const [actionMessage, setActionMessage] = useState("");
+  const [isListHighlighted, setIsListHighlighted] = useState(false);
+  const messageTimerRef = useRef(null);
+  const highlightTimerRef = useRef(null);
+
+  const flashResults = (message) => {
+    setActionMessage(message);
+    setIsListHighlighted(true);
+
+    window.clearTimeout(messageTimerRef.current);
+    window.clearTimeout(highlightTimerRef.current);
+
+    messageTimerRef.current = window.setTimeout(() => {
+      setActionMessage("");
+    }, 1800);
+
+    highlightTimerRef.current = window.setTimeout(() => {
+      setIsListHighlighted(false);
+    }, 900);
+  };
 
   const filteredCandidates = useMemo(() => {
     const normalizedSearch = searchTerm.trim().toLowerCase();
 
     const filtered = candidates.filter((candidate) => {
       const matchesStatus = selectedStatus === "All" || candidate.status === selectedStatus;
+      const matchesRegion =
+        selectedRegion === "All" ||
+        (selectedRegion === "Remote"
+          ? candidate.location === "Remote"
+          : candidate.location.endsWith(`, ${selectedRegion}`));
       const matchesSearch =
         !normalizedSearch ||
         [candidate.name, candidate.role, candidate.location, ...candidate.skills]
@@ -125,7 +254,7 @@ function App() {
           .toLowerCase()
           .includes(normalizedSearch);
 
-      return matchesStatus && matchesSearch;
+      return matchesStatus && matchesRegion && matchesSearch;
     });
 
     return [...filtered].sort((left, right) => {
@@ -133,7 +262,7 @@ function App() {
       if (sortBy === "name") return left.name.localeCompare(right.name);
       return right.match - left.match;
     });
-  }, [searchTerm, selectedStatus, sortBy]);
+  }, [searchTerm, selectedStatus, selectedRegion, sortBy]);
 
   const selectedCandidate =
     filteredCandidates.find((candidate) => candidate.id === selectedCandidateId) ||
@@ -163,9 +292,11 @@ function App() {
 
   const resetView = () => {
     setSelectedStatus("All");
+    setSelectedRegion("All");
     setSearchTerm("");
     setSortBy("match");
     setSelectedCandidateId(candidates[0].id);
+    flashResults("View reset to the default ranked candidate list.");
   };
 
   return (
@@ -190,6 +321,26 @@ function App() {
                 onClick={() => setSelectedStatus(status)}
               >
                 {status}
+              </button>
+            ))}
+          </div>
+          <div className="filter-stack region-stack">
+            {regions.map((region) => (
+              <button
+                key={region}
+                className={`filter-chip ${selectedRegion === region ? "is-active" : ""}`}
+                type="button"
+                data-testid={`region-filter-${region.toLowerCase().replace(/\s+/g, "-")}`}
+                onClick={() => {
+                  setSelectedRegion(region);
+                  flashResults(
+                    region === "All"
+                      ? "Showing candidates from all locations."
+                      : `Filtering candidates for ${region}.`
+                  );
+                }}
+              >
+                {region}
               </button>
             ))}
           </div>
@@ -224,6 +375,7 @@ function App() {
                 setSelectedStatus("All");
                 setSortBy("match");
                 setSearchTerm("");
+                flashResults("Showing candidates ranked by highest match.");
               }}
             >
               Show Top Matches
@@ -247,6 +399,12 @@ function App() {
             </article>
           ))}
         </section>
+
+        {actionMessage ? (
+          <div className="action-banner" data-testid="action-banner">
+            {actionMessage}
+          </div>
+        ) : null}
 
         <section className="toolbar">
           <label className="search-box">
@@ -274,7 +432,7 @@ function App() {
           </label>
         </section>
 
-        <section className="content-grid">
+        <section className={`content-grid ${isListHighlighted ? "is-refreshed" : ""}`}>
           <div className="candidate-list">
             {filteredCandidates.length ? (
               filteredCandidates.map((candidate) => (
