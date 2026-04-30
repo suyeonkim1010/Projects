@@ -3,6 +3,8 @@
 This repository hosts my portfolio site and project folders. The website files live at the repo root
 (`index.html`, `styles.css`, `profile.png`) and are published with GitHub Pages.
 
+Portfolio site: `https://suyeonkim1010.github.io/Projects/`
+
 ## Highlighted projects
 - `frontend-candidate-dashboard`: Recruiter-style React dashboard with live search, status and region filters,
   candidate ranking, detail-panel updates, and Playwright end-to-end coverage.

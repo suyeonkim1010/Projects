@@ -16,8 +16,10 @@ test("updates visible results when a status filter is selected", async ({ page }
 
   await expect(page.getByTestId("candidate-card-1")).toBeVisible();
   await expect(page.getByTestId("candidate-card-4")).toBeVisible();
+  await expect(page.getByTestId("candidate-card-13")).toBeVisible();
+  await expect(page.getByTestId("candidate-card-18")).toBeVisible();
   await expect(page.getByTestId("candidate-card-3")).toHaveCount(0);
-  await expect(page.getByTestId("visible-candidates")).toHaveText("2");
+  await expect(page.getByTestId("visible-candidates")).toHaveText("4");
 });
 
 test("filters candidates by region", async ({ page }) => {
